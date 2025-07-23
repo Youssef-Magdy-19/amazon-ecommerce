@@ -68,4 +68,5 @@ const ProductCard = ({ id, title, image, price, rate, count }) => {
     </div>
   );
 };
+
 export default ProductCard
