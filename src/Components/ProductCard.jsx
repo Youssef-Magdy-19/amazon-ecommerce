@@ -1,8 +1,12 @@
 import React from "react"
 
 const ProductCard =()=>{
+ 
     return(
-        <div> ProductCard </div>
+        <div>
+            product card
+
+        </div>
     )
 }
 export default ProductCard
