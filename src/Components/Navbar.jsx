@@ -11,6 +11,7 @@ const Navbar = () => {
     const { user } = useUser()
     const [isOpen, setIsOpen] = useState(false)
     const [scroll, setScroll] = useState(false)
+    const cartList = localStorage.getItem('cartList')
 
     useEffect(() => {
         const onScroll = () => {
@@ -65,7 +66,7 @@ const Navbar = () => {
                         <button
                             className="bg-yellow-500 cursor-pointer"
                             style={{ padding: '0 10px', borderRadius: '0 4px 4px 0', marginLeft: 'auto' }}
-                            onClick={() => navigate('/cart')}
+                            onClick={() => navigate('/products')}
                         >
                             <img src="/images/search.png" />
                         </button>
@@ -75,7 +76,7 @@ const Navbar = () => {
                         className="cart relative flex items-center gap-[0.5rem]"
                         onClick={() => navigate('/cart')}
                     >
-                        <span className="absolute top-[-28%] left-[45%] text-orange-400 font-bold text-[18px]">0</span>
+                        <span className="absolute top-[-28%] left-[45%] text-orange-400 font-bold text-[18px]">{cartList.length}</span>
                         <img src="/images/cart.png" alt="" />
                     </button>
                 </header>
@@ -90,7 +91,7 @@ const Navbar = () => {
                             <Menu color="white" size={30} />
                         </button>
                         {/* logo */}
-                        <Link to='/'><img src="/images/Amazon.png" width={100} height={60} /></Link>
+                        <Link to='/'><img src="/images/AmazonNavbar.png" width={100} height={60} /></Link>
                     </div>
                     {/* Delive location */}
                     <div className="flex gap-1 items-center hidden md:flex">
@@ -115,7 +116,7 @@ const Navbar = () => {
                         <button
                             className="bg-yellow-500 cursor-pointer"
                             style={{ padding: '0 10px', borderRadius: '0 4px 4px 0' }}
-                            onClick={() => navigate('/cart')}
+                            onClick={() => navigate('/products')}
                         >
                             <img src="/images/search.png" />
                         </button>
@@ -155,7 +156,7 @@ const Navbar = () => {
                         className="cart relative flex items-center gap-[0.5rem]"
                         onClick={() => navigate('/cart')}
                     >
-                        <span className="absolute top-[-28%] left-[45%] text-orange-400 font-bold text-[18px]">0</span>
+                        <span className="absolute top-[-28%] left-[45%] text-orange-400 font-bold text-[18px]">{cartList.length}</span>
                         <img src="/images/cart.png" className="cursor-pointer" onClick={() => navigate('/cart')}/>
                         <p className="font-semibold hidden xl:block">cart</p>
                     </div>
@@ -171,7 +172,7 @@ const Navbar = () => {
                     <button
                         className="bg-yellow-500 cursor-pointer"
                         style={{ padding: '0 10px', borderRadius: '0 4px 4px 0', marginLeft: 'auto' }}
-                        onClick={() => navigate('/cart')}
+                        onClick={() => navigate('/products')}
                     >
                         <img src="/images/search.png" />
                     </button>
