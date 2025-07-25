@@ -11,3 +11,24 @@
 html{
   scroll-behavior: smooth;
 }
+body{
+  height: 5000px;
+}
+button{
+  transition: .3s ease-in-out;
+}
+/* header */
+header{
+  /* background-color: #222; */
+  color: #fff;
+}
+
+/* respoinsve */
+@media (max-width:767px) {
+  .sign-in-btn{
+    margin-left: 30px !important;
+  }
+  .Deliver{
+    padding:10px 0 !important
+  }
+}
