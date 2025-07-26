@@ -125,7 +125,7 @@ const Navbar = () => {
                     {/* language */}
                     <div className="gap-[0.5rem] items-center hidden md:flex">
                         <img src="https://flagcdn.com/eg.svg" width={28} height={24} />
-                        <p className="font-bold">EN</p>
+                        <p className="font-bold text-white">EN</p>
                         <img src="/images/Arrow.png" alt="" />
                     </div>
                     {/* sign in */}
@@ -151,7 +151,7 @@ const Navbar = () => {
                         }
 
                     {/* orders */}
-                    <a href="#" className="text-center hidden lg:block">Returens & Orders</a>
+                    <a href="#" className="text-center text-white hidden lg:block">Returens & Orders</a>
                     {/* Link to cart */}
                     <div
                         className="cart relative flex items-center gap-[0.5rem]"
