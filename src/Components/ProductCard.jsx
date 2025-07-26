@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
+// @ts-ignore
 import filledStar from '../assets/filledStar.svg';
+// @ts-ignore
 import emptyStar from '../assets/emptyStar.svg';
 import { useContext } from "react";
 import { GlobalContext } from "../context/GlobalContext";
