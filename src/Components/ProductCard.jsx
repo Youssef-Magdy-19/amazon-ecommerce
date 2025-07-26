@@ -41,7 +41,7 @@ const ProductCard = ({ id, title, image, price, rate, count }) => {
         <div className="flex flex-col">
           <div className="w-2/3">
             <p className="font-normal text-xl">
-              ${price}{" "}
+              ${price.toFixed(2)}{" "}
               <span className="font-normal text-xs text-[#7F7F7F]">
                 (21% off)
               </span>
