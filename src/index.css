@@ -5,9 +5,12 @@
 *{
   font-family: Outfit;
   box-sizing: border-box;
-  margin: 0;
-  padding: 0
+
 }
 html{
   scroll-behavior: smooth;
+}
+section{
+  margin-left: auto;
+  margin-right: auto;
 }

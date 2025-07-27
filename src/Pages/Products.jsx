@@ -17,15 +17,15 @@ const Products = () => {
         setLoading(false);
       });
   }, []);
-
+  console.log(products)
   if (loading) return <p className="text-center py-8">Loading..</p>;
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 p-6 mx-auto">
+    <section className="w-[90%] md:w-[85%] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 mx-auto">
       {products.map(product => (
-        <ProductCard key={product.id}  />
+        <ProductCard key={product.id} id={product.id} title={product.title} image={product.image} price={product.price} rate={product.rating.rate} count={product.rating.count}  />
       ))}
-    </div>
+    </section>
   );
 };
 
