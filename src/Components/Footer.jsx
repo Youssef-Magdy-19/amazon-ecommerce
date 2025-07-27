@@ -3,9 +3,13 @@ import React from "react";
 const Footer = () => {
   return (
     <footer className="bg-[#232f3e] text-white text-sm mt-12  ">
-      <div id="home" className= " text-center bg-[#37475a] cursor-pointer md:text-lg hover:bg-[#485769] h-16 flex items-center justify-center">
-        Back to Top
-      </div>
+     <div
+  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+  className="text-center bg-[#37475a] cursor-pointer md:text-lg hover:bg-[#485769] h-16 flex items-center justify-center"
+>
+  Back to Top
+</div>
+
 
       <div className="flex justify-around text-sm font-light md:font-normal md:text-lg md:leading-7  gap-8 px-8 md:px-16 py-10 border-b border-gray-600 md:h-80 mt-auto">
         <div className="flex flex-col gap-4 ">
@@ -53,7 +57,7 @@ const Footer = () => {
       </div>
 
       <div className="flex flex-col md:flex-row items-center justify-center gap-4 py-24 border-t border-gray-600 md:h-16 ">
-        <img src="/public/images/Amazon.png" alt="Amazon" className="w-24 " />
+        <img src="/public/images/AmazonNavbar.png" alt="Amazon" className="w-24 " />
         <div className="flex items-center gap-4 text-gray-300">
           <select className="bg-[#232f3e] border border-gray-600 px-2 py-1 rounded">
             <option>English</option>
