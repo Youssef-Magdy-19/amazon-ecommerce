@@ -1,6 +1,6 @@
 const AddReviewForm = ({ newReview, setNewReview, handleAddReview }) => {
   return (
-    <div className="mt-10 pt-8">
+    <div className="mt-6 pt-8">
       <h4 className="text-lg font-semibold mb-2 " style={{marginBottom:"20px"}}>Add Your Review</h4>
       <form className="flex flex-col gap-4 justify-center  max-w-lg" onSubmit={handleAddReview}>
         <input
@@ -32,7 +32,7 @@ const AddReviewForm = ({ newReview, setNewReview, handleAddReview }) => {
             ))}
           </select>
         </div>
-        <button type="submit" className="bg-green-600 text-white h-[32px] py-2 px-4 rounded-3xl hover:bg-green-700 transition">
+        <button type="submit" className="bg-green-600 text-white h-[32px]  px-4 rounded-3xl hover:bg-green-700 transition">
           Submit Review
         </button>
       </form>

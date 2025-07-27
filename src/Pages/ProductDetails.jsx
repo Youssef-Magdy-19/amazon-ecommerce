@@ -61,7 +61,7 @@ const ProductDetails = () => {
   if (!product) return <p>Product not found</p>;
 
   return (
-    <div className="w-full mx-auto py-10" style={{ margin: "100px 0 50px 0px" }}>
+    <div className="w-full mx-auto py-10" style={{ margin: "50px 0 50px 0px" }}>
       <ProductInfo
         product={product}
         quantity={quantity}
@@ -70,7 +70,7 @@ const ProductDetails = () => {
         handleBuyNow={handleBuyNow}
       />
 
-      <section className="mt-12 border-t pt-8 flex justify-center flex-col items-center lg:flex-row lg:items-baseline gap-4 w-[70%] mx-auto">
+      <section className="my-4 border-t flex justify-center flex-col items-center lg:flex-row lg:items-baseline gap-4 w-[70%] mx-auto">
         <Reviews product={product} reviews={reviews} />
         <AddReviewForm
         newReview={newReview}
