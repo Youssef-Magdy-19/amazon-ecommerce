@@ -1,3 +1,4 @@
+import useWindowScrollToTop from "../hooks/useWindowScrollToTop";
 import { Link, useNavigate } from "react-router-dom";
 import { GlobalContext } from "../context/GlobalContext";
 import { useContext } from "react"
@@ -149,3 +150,5 @@ const WishList =()=>{
   );
 }
 export default WishList
+
+

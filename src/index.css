@@ -2,10 +2,13 @@
 
 @import "tailwindcss";
 
-*{
-  font-family: Outfit;
-  box-sizing: border-box;
-
+@layer base {
+  * {
+    font-family: Outfit;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 }
 html{
   scroll-behavior: smooth;
@@ -14,6 +17,20 @@ section{
   margin-left: auto;
   margin-right: auto;
 }
-body{
-  background-color: rgb(202, 202, 202);
+button{
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}
+
+@media(max-width:767px){
+  .cartPage{
+    padding-top: 135px !important;
+  }
+  .completeBuy{
+    padding: 15px 0 !important;
+  }
+  .cartProductCard{
+    margin: 0 !important;
+    padding: 15px 10px !important;
+  }
 }

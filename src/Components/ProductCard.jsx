@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import filledStar from "../assets/filledStar.svg";
 // @ts-ignore
 import emptyStar from "../assets/emptyStar.svg";
+// @ts-ignore
 import filledStar from '../assets/filledStar.svg';
 // @ts-ignore
 import emptyStar from '../assets/emptyStar.svg';

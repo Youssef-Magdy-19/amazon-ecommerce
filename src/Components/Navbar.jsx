@@ -1,9 +1,10 @@
 
-import React, { use, useEffect, useRef, useState } from "react"
+import React, { use, useContext, useEffect, useRef, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { UserButton, useClerk, useUser } from "@clerk/clerk-react"
 import { Menu, User, X } from "lucide-react"
 import AmazonSidebar from "./SideBar"
+import { GlobalContext } from "../context/GlobalContext"
 
 const Navbar = () => {
     const navigate = useNavigate()
@@ -11,8 +12,8 @@ const Navbar = () => {
     const { user } = useUser()
     const [isOpen, setIsOpen] = useState(false)
     const [scroll, setScroll] = useState(false)
-    const cartList = localStorage.getItem('cartList') || []
-    console.log(cartList.length)
+    const {cart} = useContext(GlobalContext)
+
 
     useEffect(() => {
         const onScroll = () => {
@@ -77,7 +78,7 @@ const Navbar = () => {
                         className="cart relative flex items-center gap-[0.5rem]"
                         onClick={() => navigate('/cart')}
                     >
-                        <span className="absolute top-[-28%] left-[45%] text-orange-400 font-bold text-[18px] cursor-pointer">{cartList.length}</span>
+                        <span className="absolute top-[-28%] left-[45%] text-orange-400 font-bold text-[18px] cursor-pointer">{cart.length}</span>
                         <img src="/images/cart.png" alt="" />
                     </button>
                 </header>
@@ -131,7 +132,7 @@ const Navbar = () => {
                     {/* sign in */}
                     {user ?
                         <div className="flex gap-[.5rem] items-center">
-                            <span className="text-center">Hello! {user.fullName}</span>
+                            <span className="text-center text-white">{user.fullName}</span>
                             <UserButton />
                         </div> :
                         <button
@@ -157,7 +158,7 @@ const Navbar = () => {
                         className="cart relative flex items-center gap-[0.5rem]"
                         onClick={() => navigate('/cart')}
                     >
-                        <span className="absolute top-[-28%] left-[45%] text-orange-400 font-bold text-[18px]">{cartList.length}</span>
+                        <span className="absolute top-[-28%] left-[45%] text-orange-400 font-bold text-[18px]">{cart.length}</span>
                         <img src="/images/cart.png" className="cursor-pointer" onClick={() => navigate('/cart')}/>
                         <p className="font-semibold hidden xl:block">cart</p>
                     </div>
