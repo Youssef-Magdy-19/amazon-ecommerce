@@ -5,7 +5,7 @@ import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
 import { GlobalProvider } from './context/GlobalContext'
 import { ClerkProvider } from '@clerk/clerk-react'
-import { CartProvider } from "./context/cartContext";  
+import { CartProvider } from "./context/CartContext";  
 
 
 
