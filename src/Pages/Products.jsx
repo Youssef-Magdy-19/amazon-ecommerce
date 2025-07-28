@@ -21,7 +21,7 @@ const Products = () => {
   }, []);
   console.log(products)
   if (loading) return <p className="text-center py-8">Loading..</p>;
-
+  console.log(products)
   return (
     <section className="w-[92%] md:w-[85%] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 mx-auto">
       {products.map(product => (

@@ -32,6 +32,7 @@ const AmazonSidebar = ({ isOpen, setIsOpen, user, signIn }) => {
                     {user ?
                         <div className="flex gap-[.5rem] items-center">
                             <span>Hello! {user.fullName}</span>
+                            <UserButton />
                         </div>
                         :
                         <div className="flex gap-2 items-center" onClick={() => setIsOpen(false)}>
