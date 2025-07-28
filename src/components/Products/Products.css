@@ -1,0 +1,89 @@
+@media (min-width: 1200px) {
+    .pad {
+        padding: 2rem !important;
+    }
+}
+@media (max-width: 1199px) {
+    .pad {
+        padding: 0.4rem !important;
+    }
+}
+@media (max-width: 767px) {
+    .pad {
+        padding: 2.5rem !important;
+    }
+}
+
+@media (max-width: 1199px) and (min-width: 768px) {
+    .spac {
+        letter-spacing: -0.03rem;
+    }
+}
+
+.fs9 {
+    font-size: 11px;
+}
+
+.product {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding: 12px;
+}
+
+.product:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-color: #f08804;
+}
+
+.product img {
+  max-height: 180px;
+  object-fit: contain;
+}
+
+.product .text-main {
+  color: #007185;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.product h6 {
+  font-size: 15px;
+  font-weight: bold;
+  color: #0f1111;
+  min-height: 45px;
+  margin-bottom: 6px;
+}
+
+.product .price {
+  color: #b12704;
+  font-weight: bold;
+  margin: 8px 0;
+}
+
+.product .btnAction {
+  background: none;
+  border: none;
+  color: #f08804;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.product:hover .btnAction {
+  opacity: 1;
+}
+
+.product .btn {
+  background-color: #ffd814 !important;
+  border-color: #fcd200 !important;
+  color: #111 !important;
+  font-weight: bold;
+}
+
+.product .btn:hover {
+  background-color: #f7ca00 !important;
+}

@@ -1,0 +1,38 @@
+.fs6 {
+    font-size: 0.9rem;
+}
+.py8 {
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+}
+
+.categoryImg {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border: 2px solid #ddd;
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.categoryCard {
+  border-radius: 12px;
+  padding-bottom: 10px;
+  background-color: #f8f9fa;
+  transition: box-shadow 0.3s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  p {
+    font-size: 14px;
+    color: #111;
+    margin-top: 10px;
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+}

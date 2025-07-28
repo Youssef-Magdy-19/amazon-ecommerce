@@ -1,0 +1,84 @@
+.fs14 {
+    font-size: 13px;
+}
+
+.Nav-Bar-Cus {
+  background-color: #131921 !important;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.navbar-brand .Logo-Custom {
+  width: 120px;
+  height: auto;
+}
+
+.navbar-nav .nav-link {
+  color: #ffffff !important;
+  padding: 8px 16px;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover {
+  color: orange !important;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+}
+
+.active-link {
+  color: orange !important;
+  border-bottom: 2px solid orange;
+  font-weight: bold;
+}
+
+.navbar-toggler {
+  border-color: #fff;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba%28255,255,255,0.7%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.badge.bg-main {
+  background-color: orange;
+}
+
+.navbar-nav .nav-item i {
+  color: white;
+  transition: transform 0.2s;
+}
+
+.navbar-nav .nav-item i:hover {
+  transform: scale(1.1);
+  color: orange;
+}
+
+.loghover:hover {
+  color: orange !important;
+}
+
+.text-orange {
+  color: #f08804 !important;
+}
+
+.bg-orange {
+  background-color: #f08804 !important;
+  border: none;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active-link {
+  color: #f08804 !important;
+}
+
+.badge.bg-orange {
+  background-color: #f08804 !important;
+  font-size: 10px;
+  padding: 4px 6px;
+}
+
+.logout-btn:hover {
+  color: #f08804 !important;
+  transition: 0.3s;
+}
