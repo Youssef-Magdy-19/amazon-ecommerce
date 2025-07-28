@@ -5,6 +5,8 @@ import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
 import { GlobalProvider } from './context/GlobalContext'
 import { ClerkProvider } from '@clerk/clerk-react'
+import { CartProvider } from "./context/CartContext";  
+
 
 
 // Import your Publishable Key
@@ -19,9 +21,11 @@ createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl='/'>
       <StrictMode>
+      <CartProvider>
         <GlobalProvider>
           <App />
         </GlobalProvider>
+      </CartProvider>
       </StrictMode>
     </ClerkProvider>
   </BrowserRouter>
