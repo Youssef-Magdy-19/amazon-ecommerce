@@ -14,6 +14,12 @@ const Navbar = () => {
     const [scroll, setScroll] = useState(false)
     const {cart} = useContext(GlobalContext)
 
+    // حساب عدد السلع 
+    let numberOfGoods = 0
+    cart.map((product) => {
+        numberOfGoods += product.quantity
+        return numberOfGoods
+    })
 
     useEffect(() => {
         const onScroll = () => {
@@ -52,7 +58,7 @@ const Navbar = () => {
         <>
             {/* هيدر Scroll للموبايل فقط */}
             {scroll && (
-                <header className="block md:hidden w-full min-h-[50px] bg-gray-800 fixed top-0 z-500 flex items-center justify-between gap-[1rem]" style={{ padding: "0 15px", transition: '.5s' }}>
+                <header className="block md:hidden w-full min-h-[50px] bg-gray-800 fixed top-0 z-500 flex items-center justify-between gap-[1rem] px-[15px]" style={{ transition: '.5s' }}>
                     {/* icon list */}
                     <button className="cursor-pointer block md:hidden" onClick={() => setIsOpen(true)}>
                         <Menu color="white" size={30} />
@@ -78,7 +84,7 @@ const Navbar = () => {
                         className="cart relative flex items-center gap-[0.5rem]"
                         onClick={() => navigate('/cart')}
                     >
-                        <span className="absolute top-[-28%] left-[45%] text-orange-400 font-bold text-[18px] cursor-pointer">{cart.length}</span>
+                        <span className="absolute top-[-28%] left-[45%] text-orange-400 font-bold text-[18px] cursor-pointer">{numberOfGoods}</span>
                         <img src="/images/cart.png" alt="" />
                     </button>
                 </header>
@@ -147,7 +153,7 @@ const Navbar = () => {
                                     Account & Lists
                                 </p>
                             </p>
-                            <User className="block md:hidden" width={22} />
+                            <User className="block md:hidden text-gray-200" width={22} />
                         </button>
                         }
 
@@ -158,13 +164,13 @@ const Navbar = () => {
                         className="cart relative flex items-center gap-[0.5rem]"
                         onClick={() => navigate('/cart')}
                     >
-                        <span className="absolute top-[-28%] left-[45%] text-orange-400 font-bold text-[18px]">{cart.length}</span>
-                        <img src="/images/cart.png" className="cursor-pointer" onClick={() => navigate('/cart')}/>
+                        <span className="absolute top-[-28%] left-[40%] text-orange-400 font-bold text-[18px]">{numberOfGoods}</span>
+                        <img src="/images/cart.png" className="cursor-pointer " onClick={() => navigate('/cart')}/>
                         <p className="font-semibold hidden xl:block">cart</p>
                     </div>
                 </div>
                 {/* search in mobile */}
-                <div className="search flex bg-white text-gray-500 block md:hidden rounded min-w-[330px]">
+                <div className="search flex bg-white text-gray-500 block md:hidden rounded min-w-[300px]">
                     <input
                         type="text"
                         placeholder="Search Amazon.eg"

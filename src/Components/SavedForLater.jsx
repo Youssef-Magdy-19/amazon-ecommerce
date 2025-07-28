@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { GlobalContext } from '../context/GlobalContext';
 import { ShoppingCart, Trash2 } from 'lucide-react';
+import SavedForLaterCard from './SavedForLaterCard';
 
 const SavedForLater = () => {
     // 1. بنجيب الداتا والدوال من الكونتكست
@@ -18,42 +19,19 @@ const SavedForLater = () => {
     };
 
     // لو مفيش منتجات محفوظة، مش هنظهر حاجة
-    // if (savedForLater.length === 0) {
-    //     return null;
-    // }
+    if (savedForLater.length === 0) {
+        return null;
+    }
 
     return (
-        <div className="saved-for-later bg-white rounded-lg p-4 mt-4">
-            <h2 className="text-xl font-bold mb-4 border-b pb-2">
+        <div className="saved-for-later bg-white py-3 mt-4">
+            <h2 className="text-xl font-bold mb-1 pb-2">
                 Saved for Later ({savedForLater.length} items)
             </h2>
-            <div className="space-y-4">
-                {savedForLater.map((product) => (
-                    <div key={product.id} className="flex items-center gap-4 p-2 border rounded-md">
-                        <img src={product.image} alt={product.title} className="w-20 h-20 object-cover rounded" />
-                        
-                        <div className="flex-grow">
-                            <h3 className="font-semibold">{product.title}</h3>
-                            <p className="text-lg font-bold text-gray-800">{product.price.toFixed(2)} EGP</p>
-                        </div>
-
-                        <div className="flex flex-col sm:flex-row gap-2">
-                            <button 
-                                onClick={() => handleMoveToCart(product)}
-                                className="bg-yellow-400 hover:bg-yellow-500 text-black text-sm px-3 py-1 rounded flex items-center gap-1"
-                            >
-                                <ShoppingCart size={16} />
-                                Move to Cart
-                            </button>
-                            <button
-                                onClick={() => removeFromSavedForLater(product.id)}
-                                className="text-red-500 hover:bg-red-100 text-sm px-3 py-1 rounded flex items-center gap-1"
-                            >
-                                <Trash2 size={16} />
-                                Delete
-                            </button>
-                        </div>
-                    </div>
+            <div className="sm:p-3 sm:border border-gray-300 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[0.5rem]">
+                {savedForLater.length === 0 && <p className='text-lg text-center'>No Items saved for later</p>}
+                {savedForLater.map((product , index) => (
+                    <SavedForLaterCard key={index} product={product} onMoveToCart={handleMoveToCart} onRemove={removeFromSavedForLater} />
                 ))}
             </div>
         </div>

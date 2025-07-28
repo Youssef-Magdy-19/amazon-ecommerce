@@ -24,7 +24,7 @@ button{
 
 @media(max-width:767px){
   .cartPage{
-    padding-top: 135px !important;
+    padding-top: 5px !important;
   }
   .completeBuy{
     padding: 15px 0 !important;
@@ -34,3 +34,20 @@ button{
     padding: 15px 10px !important;
   }
 }
+@media(max-width:410px){
+  .info{
+    flex: 1 1 0% !important;
+  }
+  .buttons-cart{
+    flex-direction: column !important;
+    gap: .75rem !important;
+  }
+  .saveLaterBtn{
+    width: 100% !important;
+  }
+}
+/* @media(max-width:390px){
+  header{
+    width: 100% !important;
+  }
+} */

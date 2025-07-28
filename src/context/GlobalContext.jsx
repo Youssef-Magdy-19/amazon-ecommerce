@@ -140,6 +140,7 @@ export const GlobalProvider = ({ children }) => {
     setSavedForLater((prev) =>
       prev.some((i) => i.id === product.id) ? prev : [...prev, product]
     );
+    removeProductFromCart(product.id)
   };
 
   // Remove from daved for later

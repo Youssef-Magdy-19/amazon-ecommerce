@@ -2,14 +2,10 @@ import { Link } from "react-router-dom";
 // @ts-ignore
 import filledStar from "../assets/filledStar.svg";
 // @ts-ignore
-import emptyStar from "../assets/emptyStar.svg";
-// @ts-ignore
-import filledStar from '../assets/filledStar.svg';
-// @ts-ignore
 import emptyStar from '../assets/emptyStar.svg';
 import { useContext } from "react";
 import { GlobalContext } from "../context/GlobalContext";
-import { Minus, Plus } from "lucide-react";
+import { Minus, Plus, Trash } from "lucide-react";
 
 const ProductCard = ({ id, title, image, price, rate, count }) => {
   const { cart, addProductToCart, decreaseProductQuantity } = useContext(GlobalContext);
@@ -76,21 +72,25 @@ const ProductCard = ({ id, title, image, price, rate, count }) => {
             </p>
           </div>
           {productInCart ? (
-            <div className="flex items-center gap-3">
+            <div className="flex items-center justify-between rounded-full gap-[1rem] w-[140px] border-2 border-yellow-300" >
               <button
                 onClick={() => decreaseProductQuantity(id)}
-                className="w-9 h-9 flex justify-center items-center border-2 border-[#D9D9D9] cursor-pointer rounded-full"
+                style={{ padding: '.5px 7px', borderRadius: '10px 0 0 10px' }}
               >
-                <Minus />
+                <Plus className="w-4 h-4 cursor-pointer" />
               </button>
-              <span className="text-lg">{productInCart.quantity}</span>
+              <p className="text-lg">{productInCart.quantity}</p>
               <button
                 onClick={() =>
                   addProductToCart({ id, title, image, price, rate, count })
                 }
-                className="w-9 h-9 flex justify-center items-center border-2 border-[#D9D9D9] cursor-pointer rounded-full"
+                style={{ padding: '.5px 7px', borderRadius: '0 10px 10px 0' }}
               >
-                <Plus />
+                {productInCart.quantity == 1 ?
+                  <Trash className="w-4 h-4 cursor-pointer" />
+                  :
+                  <Minus className="w-4 h-4 cursor-pointer" />
+                }
               </button>
             </div>
           ) : (
