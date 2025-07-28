@@ -1,7 +1,5 @@
 
-
 import React, { use, useContext, useEffect, useRef, useState } from "react"
-import React, { use, useEffect, useRef, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { UserButton, useClerk, useUser } from "@clerk/clerk-react"
 import { Menu, User, X } from "lucide-react"
@@ -14,7 +12,7 @@ const Navbar = () => {
     const { user } = useUser()
     const [isOpen, setIsOpen] = useState(false)
     const [scroll, setScroll] = useState(false)
-    const {cart} = useContext(GlobalContext)
+    const { cart } = useContext(GlobalContext)
 
     // حساب عدد السلع 
     let numberOfGoods = 0
@@ -62,7 +60,6 @@ const Navbar = () => {
             {/* هيدر Scroll للموبايل فقط */}
             {scroll && (
                 <header className="block md:hidden w-full min-h-[50px] bg-gray-800 fixed top-0 z-500 flex items-center justify-between gap-[1rem] px-[15px]" style={{ transition: '.5s' }}>
-                <header className="block md:hidden w-full min-h-[50px] bg-gray-800 fixed top-0 z-500 flex items-center justify-between gap-[1rem]" style={{ padding: "0 15px", transition: '.5s' }}>
                     {/* icon list */}
                     <button className="cursor-pointer block md:hidden" onClick={() => setIsOpen(true)}>
                         <Menu color="white" size={30} />
@@ -163,7 +160,7 @@ const Navbar = () => {
                             <User className="block md:hidden text-gray-200" width={22} />
                             <User className="block md:hidden" width={22} />
                         </button>
-                        }
+                    }
 
                     {/* orders */}
                     <a href="#" className="text-center text-white hidden lg:block">Returens & Orders</a>
@@ -174,35 +171,35 @@ const Navbar = () => {
                         onClick={() => navigate('/cart')}
                     >
                         <span className="absolute top-[-28%] left-[40%] text-orange-400 font-bold text-[18px]">{numberOfGoods}</span>
-                        <img src="/images/cart.png" className="cursor-pointer " onClick={() => navigate('/cart')}/>
+                        <img src="/images/cart.png" className="cursor-pointer " onClick={() => navigate('/cart')} />
                         <span className="absolute top-[-28%] left-[45%] text-orange-400 font-bold text-[18px]">{cartList.length}</span>
-                        <img src="/images/cart.png" className="cursor-pointer" onClick={() => navigate('/cart')}/>
+                        <img src="/images/cart.png" className="cursor-pointer" onClick={() => navigate('/cart')} />
                         <p className="font-semibold hidden xl:block">cart</p>
                     </div>
                 </div>
                 {/* search in mobile */}
                 <div className="search flex bg-white text-gray-500 block md:hidden rounded min-w-[300px]">
-                <div className="search flex bg-white text-gray-500 block md:hidden rounded min-w-[330px]">
-                    <input
-                        type="text"
-                        placeholder="Search Amazon.eg"
-                        className="border-0 outline-0"
-                        style={{ padding: '8px 12px' }}
-                    />
-                    <button
-                        className="bg-yellow-500 cursor-pointer"
-                        style={{ padding: '0 10px', borderRadius: '0 4px 4px 0', marginLeft: 'auto' }}
-                        onClick={() => navigate('/products')}
-                    >
-                        <img src="/images/search.png" />
-                    </button>
+                    <div className="search flex bg-white text-gray-500 block md:hidden rounded min-w-[330px]">
+                        <input
+                            type="text"
+                            placeholder="Search Amazon.eg"
+                            className="border-0 outline-0"
+                            style={{ padding: '8px 12px' }}
+                        />
+                        <button
+                            className="bg-yellow-500 cursor-pointer"
+                            style={{ padding: '0 10px', borderRadius: '0 4px 4px 0', marginLeft: 'auto' }}
+                            onClick={() => navigate('/products')}
+                        >
+                            <img src="/images/search.png" />
+                        </button>
+                    </div>
+                    {/* Delive location */}
+                    <div className="Deliver flex gap-1 items-center block md:hidden">
+                        <img src="/images/location.png" alt="" />
+                        <p className="text-gray-300 text-[14px]">Deliver To <span className="text-white font-bold"> Egypt </span></p>
+                    </div>
                 </div>
-                {/* Delive location */}
-                <div className="Deliver flex gap-1 items-center block md:hidden">
-                    <img src="/images/location.png" alt="" />
-                    <p className="text-gray-300 text-[14px]">Deliver To <span className="text-white font-bold"> Egypt </span></p>
-                </div>
-
             </header >
 
             {/*  side bar  */}
