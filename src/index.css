@@ -2,15 +2,55 @@
 
 @import "tailwindcss";
 
-*{
-  font-family: Outfit;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0
+@layer base {
+  * {
+    font-family: Outfit;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 }
 html{
   scroll-behavior: smooth;
 }
+section{
+  margin-left: auto;
+  margin-right: auto;
+}
+button{
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}
+
+@media(max-width:767px){
+  .cartPage{
+    padding-top: 5px !important;
+  }
+  .completeBuy{
+    padding: 15px 0 !important;
+  }
+  .cartProductCard{
+    margin: 0 !important;
+    padding: 15px 10px !important;
+  }
+}
+@media(max-width:410px){
+  .info{
+    flex: 1 1 0% !important;
+  }
+  .buttons-cart{
+    flex-direction: column !important;
+    gap: .75rem !important;
+  }
+  .saveLaterBtn{
+    width: 100% !important;
+  }
+}
+/* @media(max-width:390px){
+  header{
+    width: 100% !important;
+  }
+} */
 body{
   height: 5000px;
 }
