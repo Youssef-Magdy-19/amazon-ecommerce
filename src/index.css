@@ -1,31 +1,26 @@
-/* @tailwind base;
-@tailwind components;
-@tailwind utilities; */
-
-
-
-
-
-
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
 @import "tailwindcss";
 
-/* @plugin "flowbite-react/plugin/tailwindcss";
-@source "../.flowbite-react/class-list.json"; */
-
-
-
-*{
-  font-family: Outfit;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0
+@layer base {
+  * {
+    font-family: Outfit;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 }
 html{
   scroll-behavior: smooth;
 }
-
+section{
+  margin-left: auto;
+  margin-right: auto;
+}
+button{
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}
 
 /* homePage */
 .btn-m{
@@ -65,9 +60,6 @@ html{
   margin-left: 10px;
 
 }
-/* .item .img{
-  padding-left: 6px;
-} */
 
 .text{
   padding-top: 20px;
