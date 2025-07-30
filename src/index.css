@@ -70,3 +70,53 @@ button{
   margin-top: 20px;
   padding-bottom: 30px;
 }
+@media(max-width:767px){
+  .cartPage{
+    padding-top: 5px !important;
+  }
+  .completeBuy{
+    padding: 15px 0 !important;
+  }
+  .cartProductCard{
+    margin: 0 !important;
+    padding: 15px 10px !important;
+  }
+}
+@media(max-width:410px){
+  .info{
+    flex: 1 1 0% !important;
+  }
+  .buttons-cart{
+    flex-direction: column !important;
+    gap: .75rem !important;
+  }
+  .saveLaterBtn{
+    width: 100% !important;
+  }
+}
+/* @media(max-width:390px){
+  header{
+    width: 100% !important;
+  }
+} */
+body{
+  height: 5000px;
+}
+button{
+  transition: .3s ease-in-out;
+}
+/* header */
+header{
+  /* background-color: #222; */
+  color: #fff;
+}
+
+/* respoinsve */
+@media (max-width:767px) {
+  .sign-in-btn{
+    margin-left: 30px !important;
+  }
+  .Deliver{
+    padding:10px 0 !important
+  }
+}

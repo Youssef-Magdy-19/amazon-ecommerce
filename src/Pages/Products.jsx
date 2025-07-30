@@ -15,8 +15,6 @@ const Products = () => {
   const [error, setError] = useState(null)
 
 
-
-
    useEffect(() => {
       fetchProducts()
       fetchCategories()
@@ -83,4 +81,3 @@ const Products = () => {
 };
 
 export default Products;
-

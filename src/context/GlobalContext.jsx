@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 
 // @ts-ignore
 export const GlobalContext = createContext();
@@ -10,7 +11,7 @@ export const GlobalProvider = ({ children }) => {
       const wishlistItems = localStorage.getItem("wishlistItems");
       return wishlistItems ? JSON.parse(wishlistItems) : [];
     } catch (error) {
-      console.error("Failed to parse wishlist from localStorage", error);
+      toast.error("Failed to load wishlist from localStorage");
       return [];
     }
   });
@@ -19,46 +20,42 @@ export const GlobalProvider = ({ children }) => {
     localStorage.setItem("wishlistItems", JSON.stringify(wishlist));
   }, [wishlist]);
 
-  // addProductToWishlist
   const addProductToWishlist = (product) => {
     setWishlist((prevProducts) => {
-      const addedProduct = prevProducts.some((i) => i.id === product.id);
-      if (addedProduct) {
-        console.log("This product is already added to your wishlist");
+      const exists = prevProducts.some((i) => i.id === product.id);
+      if (exists) {
+        toast.error("Product is already in your wishlist");
         return prevProducts;
       } else {
-        console.log("Product added to your wishlist");
+        toast.success("Product added to your wishlist");
         return [...prevProducts, product];
       }
     });
   };
 
-  // removeProductFromWishlist
   const removeProductFromWishlist = (id) => {
     setWishlist((prevProducts) => {
-      const removedProduct = prevProducts.some((i) => i.id === id);
-      if (removedProduct) {
-        console.log("This product removed from your wishlist");
+      const exists = prevProducts.some((i) => i.id === id);
+      if (exists) {
+        toast.success("Product removed from your wishlist");
         return prevProducts.filter((i) => i.id !== id);
       } else {
-        console.log("This product is not found in your wishlist");
+        toast.error("Product not found in your wishlist");
         return prevProducts;
       }
     });
   };
 
-  // isInWishlist
-  const isInWishlist = (id) => {
-    return wishlist.some((i) => i.id === id);
-  };
+  const isInWishlist = (id) => wishlist.some((i) => i.id === id);
 
   // Cart Context
   const [cart, setCart] = useState(() => {
     try {
       const cartList = localStorage.getItem("cartList");
-      return cartList ? JSON.parse(cartList) : [];
+      const parsed = cartList ? JSON.parse(cartList) : [];
+      return Array.isArray(parsed) ? parsed.filter(Boolean) : [];
     } catch (error) {
-      console.error("Failed to parse cart from localStorage", error);
+      toast.error("Failed to load cart from localStorage");
       return [];
     }
   });
@@ -67,38 +64,91 @@ export const GlobalProvider = ({ children }) => {
     localStorage.setItem("cartList", JSON.stringify(cart));
   }, [cart]);
 
-  // addProductToCart
+  // Add product to cart or increase quantity
   const addProductToCart = (product) => {
     setCart((prevProducts) => {
-      const addedProduct = prevProducts.some((i) => i.id === product.id);
-      if (addedProduct) {
-        console.log("This product is already added to your cart");
-        return prevProducts;
+      const cleanedProducts = prevProducts.filter(Boolean);
+      const exists = cleanedProducts.find((i) => i.id === product.id);
+      if (exists) {
+        toast.success("Quantity increased");
+        return cleanedProducts.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: (item.quantity || 1) + 1 }
+            : item
+        );
       } else {
-        console.log("Product added to your cart");
-        return [...prevProducts, product];
+        toast.success("Product added to your cart");
+        return [...cleanedProducts, { ...product, quantity: 1 }];
       }
     });
   };
 
-  // removeProductFromCart
-  const removeProductFromCart = (id) => {
+  // Decrease quantity or remove item
+  const decreaseProductQuantity = (id) => {
     setCart((prevProducts) => {
-      const removedProduct = prevProducts.some((i) => i.id === id);
-      if (removedProduct) {
-        console.log("This product removed from your cart");
+      const item = prevProducts.find((i) => i.id === id);
+      if (!item) {
+        toast.error("Product not found in cart");
+        return prevProducts;
+      }
+      if (item.quantity === 1) {
+        toast.success("Product removed from cart");
         return prevProducts.filter((i) => i.id !== id);
       } else {
-        console.log("This product is not found in your cart");
+        toast.success("Quantity decreased");
+        return prevProducts.map((i) =>
+          i.id === id ? { ...i, quantity: i.quantity - 1 } : i
+        );
+      }
+    });
+  };
+
+  const removeProductFromCart = (id) => {
+    setCart((prevProducts) => {
+      const exists = prevProducts.some((i) => i.id === id);
+      if (exists) {
+        toast.success("Product removed from your cart");
+        return prevProducts.filter((i) => i.id !== id);
+      } else {
+        toast.error("Product not found in your cart");
         return prevProducts;
       }
     });
   };
 
-  // removeAllProductFromCart
   const removeAllProductFromCart = () => {
     setCart([]);
+    toast.success("All products removed from your cart");
   };
+
+  // Saved for later
+  const [savedForLater, setSavedForLater] = useState(() => {
+    try {
+      const saved = localStorage.getItem("savedForLater");
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    localStorage.setItem("savedForLater", JSON.stringify(savedForLater));
+  }, [savedForLater]);
+
+  // Add to saved for later
+  const addToSavedForLater = (product) => {
+    setSavedForLater((prev) =>
+      prev.some((i) => i.id === product.id) ? prev : [...prev, product]
+    );
+    removeProductFromCart(product.id)
+  };
+
+  // Remove from daved for later
+  const removeFromSavedForLater = (id) => {
+    setSavedForLater((prev) => prev.filter((i) => i.id !== id));
+  };
+
+  const isInSavedForLater = (id) => savedForLater.some((i) => i.id === id);
 
   return (
     <GlobalContext.Provider
@@ -109,8 +159,13 @@ export const GlobalProvider = ({ children }) => {
         isInWishlist,
         cart,
         addProductToCart,
+        decreaseProductQuantity,
         removeProductFromCart,
         removeAllProductFromCart,
+        savedForLater,
+        addToSavedForLater,
+        removeFromSavedForLater,
+        isInSavedForLater,
       }}
     >
       {children}
