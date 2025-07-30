@@ -22,6 +22,54 @@ button{
   transition: .3s ease-in-out;
 }
 
+/* homePage */
+.btn-m{
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+.padd{
+  padding: 10px;
+}
+.pt{
+  padding-top: 20px;
+  padding-bottom: 30px;
+}
+
+.img{
+  background-position:  center;
+  background-size: contain;
+  object-fit: cover;
+}
+
+
+.dots{
+  padding: 20px;
+}
+.marri{
+  margin-right: 20px;
+}
+
+
+.item{
+  padding: 5px;
+  /* padding-bottom: 40px; */
+   position: relative;
+   top: -130px;
+  margin-bottom: 10px;
+  margin-right: 5px;
+  margin-left: 10px;
+
+}
+
+.text{
+  padding-top: 20px;
+  padding-left: 10px;
+  margin-bottom: 30px;
+}
+.btnna{
+  margin-top: 20px;
+  padding-bottom: 30px;
+}
 @media(max-width:767px){
   .cartPage{
     padding-top: 5px !important;

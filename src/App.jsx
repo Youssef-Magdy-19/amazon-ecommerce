@@ -9,7 +9,6 @@ import Cart from './Pages/Cart'
 import WishList from './Pages/WishList'
 import Footer from './Components/Footer'
 
-
 function App() {
   return (
     <>
