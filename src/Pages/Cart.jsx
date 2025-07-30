@@ -1,4 +1,4 @@
-
+import { UserButton, useClerk, useUser } from "@clerk/clerk-react"
 import CartProductCard from "../Components/CartProductCard"
 import CartEmpty from "../Components/CartEmpty"
 import React, { useContext, useEffect, useState } from "react"
@@ -11,6 +11,7 @@ import { ChevronRight } from "lucide-react";
 const Cart = () => {
     const navigate = useNavigate()
     const { removeAllProductFromCart, cart } = useContext(GlobalContext);
+    const {user} = useUser()
 
     // حساب السعر الكلي لمنتجات عربة التسوق
     let totalPrice = 0
@@ -83,7 +84,7 @@ const Cart = () => {
                 <div className="py-2 bg-white mt-2">
                     <button
                         className="flex justify-between items-center w-full p-3 border-b border-t border-gray-300 font-semibold cursor-pointer"
-                        onClick={() => navigate('/products')}
+                        onClick={() =>{ user && navigate('/products')}}
                     >
                         Follow up Shopping
                         <ChevronRight size={20} />

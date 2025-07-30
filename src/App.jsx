@@ -8,6 +8,7 @@ import ProductDetails from "./Pages/ProductDetails";
 import Cart from './Pages/Cart'
 import WishList from './Pages/WishList'
 import Footer from './Components/Footer'
+import Checkout from './Pages/CheckOut'
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
           <Route path='/products/:id' element={<ProductDetails />} />
           <Route path='/cart' element={<Cart />} />
           <Route path='/wishlist' element={<WishList />} />
-          {/* <Route path='/checkout' element={<CheckOut />} /> */}
+          <Route path='/checkout' element={<Checkout />} />
           <Route path='/*' element={<PageNotFound />} />
         </Routes>
       </div>

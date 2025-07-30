@@ -4,9 +4,9 @@ import React, { useContext, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { toast } from 'react-hot-toast';
 import { Helmet } from 'react-helmet';
-import { cartContext } from '../../context/CartContext';
+import { cartContext } from '../context/CartContext';
 
 export default function Checkout() {
   const [loading, setLoading] = useState(false);
