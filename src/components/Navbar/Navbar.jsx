@@ -3,7 +3,7 @@ import logo from '../../assets/img/Amazon_CS_01_Intro_00_Thumbnail.jpg';
 import { Link, NavLink } from 'react-router-dom';
 import { userContext } from '../../context/TokenContext';
 import { cartContext } from '../../context/CartContext';
-import './Navbar.css'; // تأكد أنه موجود
+import './Navbar.css';
 
 export default function Navbar() {
   const { userToken, setToken } = useContext(userContext);
@@ -19,7 +19,7 @@ export default function Navbar() {
     <nav className="navbar navbar-expand-lg position-fixed z-3 w-100 start-0 top-0 Nav-Bar-Cus">
       <div className="container">
         <NavLink className="navbar-brand" to="/">
-          <img src={logo} alt="logo" className='Logo-Custom' />
+          <img src={logo} alt="logo" className="Logo-Custom" />
         </NavLink>
 
         <button
@@ -52,9 +52,9 @@ export default function Navbar() {
 
           <ul className="navbar-nav ms-auto align-items-center">
             <li className="nav-item position-relative me-3">
-              <NavLink className={({ isActive }) => isActive ? 'nav-link active-link' : 'nav-link'} to="cart">
-                <i className="bi bi-cart4 fs-5"></i>
-                {userToken && (
+              <NavLink className={({ isActive }) => isActive ? 'nav-link active-link' : 'nav-link'} to="checkout">
+                <i className="fa-solid fa-cart-shopping fs-5"></i>
+                {cartNumber > 0 && (
                   <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-main">
                     {cartNumber}
                   </span>

@@ -1,6 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
-import { createContext } from "react";
+import { useState, createContext, useEffect } from "react";
 import { toast } from "react-toastify";
 
 export let cartContext = createContext();
@@ -11,123 +10,93 @@ export default function CartContextProvider(props) {
   const [dataWishList, setDataWishList] = useState([]);
   const [cartId, setCartId] = useState(null);
 
-  // const [data, setData] = useState([JSON.parse(localStorage.getItem("data") || "[]")]);
-
   let Baseurl = "https://ecommerce.routemisr.com";
 
-  let header = {
-    token: localStorage.getItem("userToken"),
-  };
-
-/*   const hostname = window.location.host;
-  let param = {
-    url: "https://" + hostname,
-  }; */
-
-function addToCart(productId) {
   const userToken = localStorage.getItem("userToken");
 
-  if (userToken) {
-    // ✅ المستخدم مسجل دخوله، استخدم الـ API
-    return axios
-      .post(
-        `${Baseurl}/api/v1/cart`,
-        { productId },
-        {
-          headers: {
-            token: userToken,
-          },
-        }
-      )
-      .then((res) => {
-        toast.success(res.data.message || "Product added to cart");
-        setCartNumber(res.data.numOfCartItems);
-        return res;
-      })
-      .catch((err) => {
-        toast.error("Failed to add to cart");
-        return err;
-      });
-  } else {
-    // ❌ المستخدم مش مسجل، خزّن المنتج محليًا
-    let localCart = JSON.parse(localStorage.getItem("localCart")) || [];
+  useEffect(() => {
+    if (!userToken) {
+      // توليد cartId وهمي
+      const localId = localStorage.getItem("localCartId") || crypto.randomUUID();
+      localStorage.setItem("localCartId", localId);
+      setCartId(localId);
 
-    // لو المنتج مش موجود، ضيفه
-    if (!localCart.includes(productId)) {
-      localCart.push(productId);
-      localStorage.setItem("localCart", JSON.stringify(localCart));
-      toast.success("Product added to temporary cart");
+      const localCart = JSON.parse(localStorage.getItem("localCart")) || [];
       setCartNumber(localCart.length);
-    } else {
-      toast.info("Product already in temporary cart");
     }
+  }, [userToken]);
 
-    return Promise.resolve({ local: true, productId });
+  function addToCart(productId) {
+    if (userToken) {
+      return axios
+        .post(`${Baseurl}/api/v1/cart`, { productId }, { headers: { token: userToken } })
+        .then((res) => {
+          toast.success(res.data.message || "Product added to cart");
+          setCartNumber(res.data.numOfCartItems);
+          return res;
+        })
+        .catch((err) => {
+          toast.error("Failed to add to cart");
+          return err;
+        });
+    } else {
+      let localCart = JSON.parse(localStorage.getItem("localCart")) || [];
+      if (!localCart.includes(productId)) {
+        localCart.push(productId);
+        localStorage.setItem("localCart", JSON.stringify(localCart));
+        toast.success("Product added to temporary cart");
+        setCartNumber(localCart.length);
+      } else {
+        toast.info("Product already in temporary cart");
+      }
+      return Promise.resolve({ local: true, productId });
+    }
   }
-}
-
-  /* 
-    function getCart() {
-    return axios.get(`${Baseurl}/api/v1/cart`, {
-        headers: header,
-    })
-  } */
 
   function getCart() {
+    if (!userToken) return;
     return axios
       .get(`${Baseurl}/api/v1/cart`, {
         headers: {
-          token: localStorage.getItem("userToken"),
+          token: userToken,
         },
       })
       .then((res) => {
-        if (res.status === 200) {
-          let cartNum = res.data.numOfCartItems;
-          if (cartNum === 0) {
-            cartNum = "";
-          }
-          setCartNumber(cartNum);
-          // console.log(res.data.data.products);
-          setCartId(res.data.data._id);
-          localStorage.setItem("userId", res.data.data.cartOwner);
-        }
+        let cartNum = res.data.numOfCartItems || "";
+        setCartNumber(cartNum);
+        setCartId(res.data.data._id);
+        localStorage.setItem("userId", res.data.data.cartOwner);
         return res;
       })
-      .catch((err) => {
-        // console.log(err);
-      });
+      .catch(() => {});
   }
 
   function updateCart(id, count) {
     return axios.put(
       `${Baseurl}/api/v1/cart/${id}`,
-      {
-        count: count,
-      },
-      {
-        headers: {
-          token: localStorage.getItem("userToken"),
-        },
-      }
+      { count },
+      { headers: { token: userToken } }
     );
   }
 
   function deleteCart(id) {
     return axios.delete(`${Baseurl}/api/v1/cart/${id}`, {
-      headers: {
-        token: localStorage.getItem("userToken"),
-      },
+      headers: { token: userToken },
     });
   }
+
   function clearCart() {
     return axios.delete(`${Baseurl}/api/v1/cart`, {
-      headers: {
-        token: localStorage.getItem("userToken"),
-      },
+      headers: { token: userToken },
     });
   }
 
   function checkOutPayment(id, formDeta) {
+    if (!userToken) {
+      toast.error("Please log in to proceed with payment.");
+      return Promise.reject("Unauthorized");
+    }
+
     return axios.post(
       `${Baseurl}/api/v1/orders/checkout-session/${id}?url=https://freshcart-sherif-el-sheikhs-projects.vercel.app/`,
       {
@@ -135,7 +104,7 @@ function addToCart(productId) {
       },
       {
         headers: {
-          token: localStorage.getItem("userToken"),
+          token: userToken,
         },
       }
     );
@@ -144,63 +113,27 @@ function addToCart(productId) {
   function addToWishList(id) {
     return axios.post(
       `${Baseurl}/api/v1/wishlist`,
-      {
-        productId: id,
-      },
-      {
-        headers: {
-          token: localStorage.getItem("userToken"),
-        },
-      }
+      { productId: id },
+      { headers: { token: userToken } }
     );
   }
-
-  /*   function getWishList() {
-    return axios
-      .get(`${Baseurl}/api/v1/wishlist`, {
-        headers: header,
-      })
-  } */
 
   async function getWishList() {
     return axios
       .get(`${Baseurl}/api/v1/wishlist`, {
-        headers: {
-          token: localStorage.getItem("userToken"),
-        },
+        headers: { token: userToken },
       })
       .then((res) => {
-        if (res.data.data.length) {
-          let wishNum = res.data.data.length;
-          if (wishNum === 0) {
-            wishNum = "";
-          }
-          setWishListNumber(wishNum);
-        }
+        let wishNum = res.data.data.length || "";
+        setWishListNumber(wishNum);
         return res;
       })
       .catch((err) => err);
   }
 
-  // async function getWishList() {
-  //   try {
-  //     const res = await axios.get(`${Baseurl}/api/v1/wishlist`, {
-  //       headers: header,
-  //     });
-  //     if (res.data.data.length) {
-  //       setWishListNumber(res.data.data.length);
-  //     }
-  //     return res;
-  //   } catch (err) {
-  //     return err;
-  //   }
-  // }
-
   function deleteWishList(id) {
     return axios.delete(`${Baseurl}/api/v1/wishlist/${id}`, {
-      headers: {
-        token: localStorage.getItem("userToken"),
-      },
+      headers: { token: userToken },
     });
   }
 
@@ -222,7 +155,6 @@ function addToCart(productId) {
         deleteWishList,
         dataWishList,
         setDataWishList,
-        header,
         cartId,
       }}
     >
