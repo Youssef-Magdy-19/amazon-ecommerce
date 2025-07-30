@@ -6,13 +6,13 @@ import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { Helmet } from 'react-helmet';
-import { cartContext } from '../context/CartContext';
+import { useCart } from '../context/CartContext';
 
 export default function Checkout() {
   const [loading, setLoading] = useState(false);
   const [cashLoading, setCashLoading] = useState(false);
   const [error, setError] = useState('');
-  const { cartId, setCartNumber } = useContext(cartContext);
+  const { cartId, setCartNumber } = useCart();
   const navigate = useNavigate();
 
   const validationSchema = Yup.object({
