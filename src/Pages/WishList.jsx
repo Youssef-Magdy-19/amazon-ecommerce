@@ -1,17 +1,20 @@
 import useWindowScrollToTop from "../hooks/useWindowScrollToTop";
 import { Link, useNavigate } from "react-router-dom";
 import { GlobalContext } from "../context/GlobalContext";
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 // @ts-ignore
 import filledStar from '../assets/filledStar.svg';
 // @ts-ignore
 import emptyStar from '../assets/emptyStar.svg';
 import { Ellipsis, Plus, Share, UserRound } from "lucide-react";
+import LoadingSpinner from "./Test/LoadingSpinner";
 
 const WishList =()=>{
-  
+  const [loading, setLoading] = useState(true);
 	const { wishlist, addProductToCart, removeProductFromWishlist} = useContext(GlobalContext);
 	const navigate = useNavigate();
+
+  useEffect(()=>{ if(wishlist) setLoading(false)})
 
 	const renderStars = (rate) => {
 			const stars = [];
@@ -24,6 +27,8 @@ const WishList =()=>{
 			}
 			return stars;
 		};
+
+    if (loading) return <LoadingSpinner />
 	
 	return (
     <section className="relative top-[124px] md:top-[60px] py-20 w-[90%] md:w-[85%]">

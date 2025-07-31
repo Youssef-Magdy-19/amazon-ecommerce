@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { Helmet } from 'react-helmet';
 import { useCart } from '../context/CartContext';
+import { GlobalContext } from '../context/GlobalContext';
 
 export default function Checkout() {
   const [loading, setLoading] = useState(false);
@@ -14,6 +15,7 @@ export default function Checkout() {
   const [error, setError] = useState('');
   const { cartId, setCartNumber } = useCart();
   const navigate = useNavigate();
+  const {removeAllProductFromCart} = useContext(GlobalContext)
 
   const validationSchema = Yup.object({
     city: Yup.string().min(3).max(20).required('City is required'),
@@ -49,7 +51,7 @@ export default function Checkout() {
     localStorage.setItem('fakeOrders', JSON.stringify([...previousOrders, newOrder]));
 
     // تنظيف الكارت
-    localStorage.removeItem('localCart');
+    localStorage.removeItem('cartList');
     setCartNumber(0);
 
     toast.success('Online payment (mock) successful');
@@ -80,7 +82,7 @@ export default function Checkout() {
     localStorage.setItem('fakeOrders', JSON.stringify([...previousOrders, newOrder]));
 
     // تنظيف الكارت
-    localStorage.removeItem('localCart');
+    removeAllProductFromCart()
     setCartNumber(0);
 
     toast.success('Cash order (mock) placed');
@@ -95,52 +97,53 @@ export default function Checkout() {
   return (
     <div className="container my-5">
       <Helmet>
-        <title>Checkout</title>
+        <title className='font-semibold text-2xl md:text-3xl'>Checkout</title>
       </Helmet>
-      <h2 className="text-main text-center mb-4">Checkout</h2>
+      <h2 className="font-semibold text-2xl md:text-3xl text-center mb-4">Checkout</h2>
       <form onSubmit={formik.handleSubmit} className="w-75 mx-auto">
-        <div className="mb-3">
-          <label htmlFor="city">City</label>
+        <div className="mb-3 flex flex-col gap-[0.25rem]">
+          <label className='text-gray-800' htmlFor="city">City</label>
           <input
             id="city"
-            className="form-control"
+            className="form-control rounded border border-gray-200 py-[3px] outline-none px-[10px]"
             {...formik.getFieldProps('city')}
           />
           {formik.touched.city && formik.errors.city && (
-            <small className="text-danger">{formik.errors.city}</small>
+            <small className="text-red-500">{formik.errors.city}</small>
           )}
         </div>
 
-        <div className="mb-3">
-          <label htmlFor="phone">Phone</label>
+        <div className="mb-3 flex flex-col gap-[0.25rem]">
+          <label className='text-gray-800' htmlFor="phone">Phone</label>
           <input
             id="phone"
-            className="form-control"
+            className="form-control rounded border border-gray-200 py-[3px] outline-none px-[10px]"
             {...formik.getFieldProps('phone')}
           />
           {formik.touched.phone && formik.errors.phone && (
-            <small className="text-danger">{formik.errors.phone}</small>
+            <small className="text-red-500">{formik.errors.phone}</small>
           )}
         </div>
 
-        <div className="mb-3">
-          <label htmlFor="details">Details</label>
+        <div className="mb-3 flex flex-col gap-[0.25rem]">
+          <label className='text-gray-800' htmlFor="details">Details</label>
           <textarea
             id="details"
-            className="form-control"
+            rows={5}
+            className="form-control rounded border border-gray-200 outline-none py-[3px] px-[10px]"
             {...formik.getFieldProps('details')}
           ></textarea>
           {formik.touched.details && formik.errors.details && (
-            <small className="text-danger">{formik.errors.details}</small>
+            <small className="text-red-500">{formik.errors.details}</small>
           )}
         </div>
 
-        {error && <p className="text-danger text-center">{error}</p>}
+        {error && <p className="text-red-500 text-center">{error}</p>}
 
         <div className="text-center mt-4">
           <button
             type="submit"
-            className="btn bg-main text-white mx-2"
+            className="bg-yellow-500 hover:bg-yellow-600 text-white mx-2 rounded-full py-[5px] px-[20px]"
             disabled={loading || !(formik.isValid && formik.dirty)}
           >
             {loading ? 'Processing...' : 'Pay Online'}
@@ -148,7 +151,7 @@ export default function Checkout() {
 
           <button
             type="button"
-            className="btn btn-secondary mx-2"
+            className="bg-white hover:bg-gray-100 border border-gray-800 mx-2 rounded-full py-[5px] px-[20px]"
             onClick={handleCashPayment}
             disabled={cashLoading || !(formik.isValid && formik.dirty)}
           >

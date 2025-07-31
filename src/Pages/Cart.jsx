@@ -7,11 +7,13 @@ import useWindowScrollToTop from "../hooks/useWindowScrollToTop";
 import { GlobalContext } from "../context/GlobalContext";
 import SavedForLater from "../Components/SavedForLater";
 import { ChevronRight } from "lucide-react";
+import LoadingSpinner from "./Test/LoadingSpinner"
 
 const Cart = () => {
     const navigate = useNavigate()
     const { removeAllProductFromCart, cart } = useContext(GlobalContext);
-    const {user} = useUser()
+    const { user } = useUser()
+    const savedForLater = JSON.parse(localStorage.getItem('savedForLater')) || []
 
     // حساب السعر الكلي لمنتجات عربة التسوق
     let totalPrice = 0
@@ -26,8 +28,9 @@ const Cart = () => {
         numberOfGoods += product.quantity
         return numberOfGoods
     })
-
+    
     useWindowScrollToTop()
+
     return (
         <section className="cartPage bg-white md:bg-gray-200" style={{ padding: '10px 15px' }}>
             {cart.length === 0 ?
@@ -79,12 +82,12 @@ const Cart = () => {
                     </div>
                 </div>
             }
-            {cart.length !== 0 && <SavedForLater />}
+            {savedForLater.length !== 0 && <SavedForLater />}
             {cart.length !== 0 &&
                 <div className="py-2 bg-white mt-2">
                     <button
                         className="flex justify-between items-center w-full p-3 border-b border-t border-gray-300 font-semibold cursor-pointer"
-                        onClick={() =>{ user && navigate('/products')}}
+                        onClick={() => { user && navigate('/products') }}
                     >
                         Follow up Shopping
                         <ChevronRight size={20} />

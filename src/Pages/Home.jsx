@@ -1,6 +1,6 @@
 
 import ManiSlider from "./ManiSlider/ManiSlider";
-import { useState} from "react"
+import { useState } from "react"
 // import axios from "axios"
 // import ProductCard from "./Test/ProductCard"
 import LoadingSpinner from "./Test/LoadingSpinner"
@@ -81,230 +81,230 @@ import Slider2 from "./ManiSlider/Slider2";
 function Home() {
   return (
     <>
-      <ManiSlider/>
+      <ManiSlider />
 
       <div className="bg-gray-700">
-       <div className="pat grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 p-6 mx-aut">
-             <Link to='products'>
-                   <div className="flex justify-around w-fit rounded">
-                      <div className="item bg-white">
-                     <p className="font-bold text-[22px]">Revamp your home in style</p>
-                    <div className="flex flex-wrap  justify-space-between align-center "> 
-                      {/* img */}
-                          <div >
-                            <img src={img3}/>
-                            <p>Figurines</p>
-                          </div>
-                          <div>
-                            <img src={img4}/>
-                            <p>Lighting solutions</p>
-                          </div>
-                          <div >
-                            <img src={img1} className="w-[135px] h-[116px] object-cover"/>
-                            <p>Home storage</p>
-                          </div>
-                          <div>
-                            <img src={img2} className="w-[135px] h-[116px] object-cover"/>
-                            <p>Cushion covers</p>
-                          </div>
-                          
-                    </div>
-                   </div>
-                    </div> 
-             </Link>  
-             <Link to='products'>
-                   <div className="flex justify-between w-fit rounded">
-                      <div className="item bg-white">
-                     <p className="font-bold text-[22px]"> Up to 55% off</p>
-                    <div className="flex flex-wrap  justify-center align-center "> 
-                      {/* img */}
-                          <div >
-                            <img src={img7} className="w-[135px] h-[116px] object-cover"/>
-                            <p>Figurines</p>
-                          </div>
-                          <div>
-                            <img src={img8} className="w-[135px] h-[116px] object-cover"/>
-                            <p>Lighting solutions</p>
-                          </div>
-                          <div >
-                            <img src={img6} className="w-[135px] h-[116px] object-cover"/>
-                            <p>Home storage</p>
-                          </div>
-                          <div>
-                            <img src={img5} className="w-[135px] h-[116px] object-cover"/>
-                            <p>Cushion covers</p>
-                          </div>
-                          
-                    </div>
-                   </div>
-                    </div> 
-             </Link>  
-             <Link to='products'>
-                   <div className="flex justify-between w-fit rounded">
-                      <div className="item bg-white">
-                     <p className="font-bold text-[22px]">Starting $149 | Headphones</p>
-                    <div className="flex flex-wrap  justify-center align-center "> 
-                      {/* img */}
-                          <div >
-                            <img src={img9} className="w-[135px] h-[116px] object-cover"/>
-                            <p>Figurines</p>
-                          </div>
-                          <div>
-                            <img src={img10} className="w-[135px] h-[116px] object-cover"/>
-                            <p>Lighting solutions</p>
-                          </div>
-                          <div >
-                            <img src={img11} className="w-[135px] h-[116px] object-cover"/>
-                            <p>Home storage</p>
-                          </div>
-                          <div>
-                            <img src={img12} className="w-[135px] h-[116px] object-cover"/>
-                            <p>Cushion covers</p>
-                          </div>
-                          
-                    </div>
-                   </div>
-                    </div> 
-             </Link>  
-             <Link to='products'>
-                   <div className="flex justify-between w-fit rounded">
-                      <div className="item bg-white">
-                     <p className="font-bold text-[22px]">Starting $99</p>
-                    <div className="flex flex-wrap  justify-center align-center "> 
-                      {/* img */}
-                          <div >
-                            <img src={img13} className="w-[135px] h-[116px] object-cover"/>
-                            <p>Figurines</p>
-                          </div>
-                          <div>
-                            <img src={img14} className="w-[135px] h-[116px] object-cover"/>
-                            <p>Lighting solutions</p>
-                          </div>
-                          <div >
-                            <img src={img15} className="w-[135px] h-[116px] object-cover"/>
-                            <p>Home storage</p>
-                          </div>
-                          <div>
-                            <img src={img16} className="w-[135px] h-[116px] object-cover"/>
-                            <p>Cushion covers</p>
-                          </div>
-                          
-                    </div>
-                   </div>
-                    </div> 
-             </Link>  
-             <Link to='products'>
-                   <div className="flex justify-between w-fit rounded">
-                      <div className="item bg-white">
-                     <p className="font-bold text-[22px]">Starting $99</p>
-                    <div className="flex flex-wrap  justify-center align-center "> 
-                      {/* img */}
-                          <div >
-                            <img src={img17} className="w-[135px] h-[116px] object-cover"/>
-                            <p>Figurines</p>
-                          </div>
-                          <div>
-                            <img src={img18} className="w-[135px] h-[116px] object-cover"/>
-                            <p>Lighting solutions</p>
-                          </div>
-                          <div >
-                            <img src={img19} className="w-[135px] h-[116px] object-cover"/>
-                            <p>Home storage</p>
-                          </div>
-                          <div>
-                            <img src={img20} className="w-[135px] h-[116px] object-cover"/>
-                            <p>Cushion covers</p>
-                          </div>
-                          
-                    </div>
-                   </div>
-                    </div> 
-             </Link>  
-             <Link to='products'>
-                   <div className="flex justify-between w-fit rounded">
-                      <div className="item bg-white">
-                     <p className="font-bold text-[22px]">Starting $99</p>
-                    <div className="flex flex-wrap  justify-center align-center "> 
-                      {/* img */}
-                          <div >
-                            <img src={img21} className="w-[135px] h-[116px] object-cover"/>
-                            <p>Figurines</p>
-                          </div>
-                          <div>
-                            <img src={img22} className="w-[135px] h-[116px] object-cover"/>
-                            <p>Lighting solutions</p>
-                          </div>
-                          <div >
-                            <img src={img23} className="w-[135px] h-[116px] object-cover"/>
-                            <p>Home storage</p>
-                          </div>
-                          <div>
-                            <img src={img24} className="w-[135px] h-[116px] object-cover"/>
-                            <p>Cushion covers</p>
-                          </div>
-                          
-                    </div>
-                   </div>
-                    </div> 
-             </Link>  
-             <Link to='products'>
-                   <div className="flex justify-between w-fit rounded">
-                      <div className="item bg-white">
-                     <p className="font-bold text-[22px]">Starting $99</p>
-                    <div className="flex flex-wrap  justify-center align-center "> 
-                      {/* img */}
-                          <div >
-                            <img src={img25} className="w-[135px] h-[116px] object-cover"/>
-                            <p>Figurines</p>
-                          </div>
-                          <div>
-                            <img src={img26} className="w-[135px] h-[116px] object-cover"/>
-                            <p>Lighting solutions</p>
-                          </div>
-                          <div >
-                            <img src={img27} className="w-[135px] h-[116px] object-cover"/>
-                            <p>Home storage</p>
-                          </div>
-                          <div>
-                            <img src={img28} className="w-[135px] h-[116px] object-cover"/>
-                            <p>Cushion covers</p>
-                          </div>
-                          
-                    </div>
-                   </div>
-                    </div> 
-             </Link>  
-             <Link to='products'>
-                   <div className="flex justify-between w-fit rounded">
-                      <div className="item bg-white">
-                     <p className="font-bold text-[22px]">Starting $99</p>
-                    <div className="flex flex-wrap  justify-center align-center "> 
-                      {/* img */}
-                          <div >
-                            <img src={img29} className="w-[135px] h-[116px] object-cover"/>
-                            <p>Figurines</p>
-                          </div>
-                          <div>
-                            <img src={img30} className="w-[135px] h-[116px] object-cover"/>
-                            <p>Lighting solutions</p>
-                          </div>
-                          <div >
-                            <img src={img31} className="w-[135px] h-[116px] object-cover"/>
-                            <p>Home storage</p>
-                          </div>
-                          <div>
-                            <img src={img32} className="w-[135px] h-[116px] object-cover"/>
-                            <p>Cushion covers</p>
-                          </div>
-                          
-                    </div>
-                   </div>
-                    </div> 
-             </Link>  
-              
-       </div>
-        <Slider2/>
-       </div>
+        <div className="pat grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-1 p-6 mx-auto">
+          <Link to='products'>
+            <div className="flex justify-around rounded">
+              <div className="item bg-white">
+                <p className="font-bold text-[22px]">Revamp your home in style</p>
+                <div className="grid grid-cols-2 gap-[0.5rem] ">
+                  {/* img */}
+                  <div >
+                    <img src={img2} className="w-full  object-cover" />
+                    <p>Figurines</p>
+                  </div>
+                  <div>
+                    <img src={img1} className="w-full  object-cover" />
+                    <p>Lighting solutions</p>
+                  </div>
+                  <div >
+                    <img src={img1} className="w-full  object-cover" />
+                    <p>Home storage</p>
+                  </div>
+                  <div>
+                    <img src={img2} className="w-full  object-cover" />
+                    <p>Cushion covers</p>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </Link>
+          <Link to='products'>
+            <div className="flex justify-between rounded">
+              <div className="item bg-white">
+                <p className="font-bold text-[22px]"> Up to 55% off</p>
+                <div className="grid grid-cols-2 gap-[0.5rem] ">
+                  {/* img */}
+                  <div >
+                    <img src={img7} className="w-full  object-cover" />
+                    <p>Figurines</p>
+                  </div>
+                  <div>
+                    <img src={img8} className="w-full  object-cover" />
+                    <p>Lighting solutions</p>
+                  </div>
+                  <div >
+                    <img src={img6} className="w-full  object-cover" />
+                    <p>Home storage</p>
+                  </div>
+                  <div>
+                    <img src={img5} className="w-full  object-cover" />
+                    <p>Cushion covers</p>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </Link>
+          <Link to='products'>
+            <div className="flex justify-between rounded">
+              <div className="item bg-white">
+                <p className="font-bold text-[22px]">Starting $149 | Headphones</p>
+                <div className="grid grid-cols-2 gap-[0.5rem] ">
+                  {/* img */}
+                  <div >
+                    <img src={img9} className="w-full  object-cover" />
+                    <p>Figurines</p>
+                  </div>
+                  <div>
+                    <img src={img10} className="w-full  object-cover" />
+                    <p>Lighting solutions</p>
+                  </div>
+                  <div >
+                    <img src={img11} className="w-full  object-cover" />
+                    <p>Home storage</p>
+                  </div>
+                  <div>
+                    <img src={img12} className="w-full  object-cover" />
+                    <p>Cushion covers</p>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </Link>
+          <Link to='products'>
+            <div className="flex justify-between rounded">
+              <div className="item bg-white">
+                <p className="font-bold text-[22px]">Starting $99</p>
+                <div className="grid grid-cols-2 gap-[0.5rem] ">
+                  {/* img */}
+                  <div >
+                    <img src={img13} className="w-full  object-cover" />
+                    <p>Figurines</p>
+                  </div>
+                  <div>
+                    <img src={img14} className="w-full  object-cover" />
+                    <p>Lighting solutions</p>
+                  </div>
+                  <div >
+                    <img src={img15} className="w-full  object-cover" />
+                    <p>Home storage</p>
+                  </div>
+                  <div>
+                    <img src={img16} className="w-full  object-cover" />
+                    <p>Cushion covers</p>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </Link>
+          <Link to='products'>
+            <div className="flex justify-between rounded">
+              <div className="item bg-white">
+                <p className="font-bold text-[22px]">Starting $99</p>
+                <div className="grid grid-cols-2 gap-[0.5rem] ">
+                  {/* img */}
+                  <div >
+                    <img src={img17} className="w-full  object-cover" />
+                    <p>Figurines</p>
+                  </div>
+                  <div>
+                    <img src={img18} className="w-full  object-cover" />
+                    <p>Lighting solutions</p>
+                  </div>
+                  <div >
+                    <img src={img19} className="w-full  object-cover" />
+                    <p>Home storage</p>
+                  </div>
+                  <div>
+                    <img src={img20} className="w-full  object-cover" />
+                    <p>Cushion covers</p>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </Link>
+          <Link to='products'>
+            <div className="flex justify-between rounded">
+              <div className="item bg-white">
+                <p className="font-bold text-[22px]">Starting $99</p>
+                <div className="grid grid-cols-2 gap-[0.5rem] ">
+                  {/* img */}
+                  <div >
+                    <img src={img21} className="w-full  object-cover" />
+                    <p>Figurines</p>
+                  </div>
+                  <div>
+                    <img src={img22} className="w-full  object-cover" />
+                    <p>Lighting solutions</p>
+                  </div>
+                  <div >
+                    <img src={img23} className="w-full  object-cover" />
+                    <p>Home storage</p>
+                  </div>
+                  <div>
+                    <img src={img24} className="w-full  object-cover" />
+                    <p>Cushion covers</p>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </Link>
+          <Link to='products'>
+            <div className="flex justify-between rounded">
+              <div className="item bg-white">
+                <p className="font-bold text-[22px]">Starting $99</p>
+                <div className="grid grid-cols-2 gap-[0.5rem] ">
+                  {/* img */}
+                  <div >
+                    <img src={img25} className="w-full  object-cover" />
+                    <p>Figurines</p>
+                  </div>
+                  <div>
+                    <img src={img26} className="w-full  object-cover" />
+                    <p>Lighting solutions</p>
+                  </div>
+                  <div >
+                    <img src={img27} className="w-full  object-cover" />
+                    <p>Home storage</p>
+                  </div>
+                  <div>
+                    <img src={img28} className="w-full  object-cover" />
+                    <p>Cushion covers</p>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </Link>
+          <Link to='products'>
+            <div className="flex justify-between rounded">
+              <div className="item bg-white">
+                <p className="font-bold text-[22px]">Starting $99</p>
+                <div className="grid grid-cols-2 gap-[0.5rem] ">
+                  {/* img */}
+                  <div >
+                    <img src={img29} className="w-full  object-cover" />
+                    <p>Figurines</p>
+                  </div>
+                  <div>
+                    <img src={img30} className="w-full  object-cover" />
+                    <p>Lighting solutions</p>
+                  </div>
+                  <div >
+                    <img src={img31} className="w-full  object-cover" />
+                    <p>Home storage</p>
+                  </div>
+                  <div>
+                    <img src={img32} className="w-full  object-cover" />
+                    <p>Cushion covers</p>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </Link>
+
+        </div>
+        <Slider2 />
+      </div>
     </>
   )
 }

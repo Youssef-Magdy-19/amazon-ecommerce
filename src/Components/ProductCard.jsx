@@ -28,7 +28,7 @@ const ProductCard = ({ id, title, image, price, rate, count }) => {
 
   return (
     <div className="p-3 border-2 border-[#D9D9D9]">
-      <Link to={`/productDetails/${id}`} className="block my-3">
+      <Link to={`/products/${id}`} className="block my-3">
         <img
           src={image}
           loading="lazy"
@@ -74,17 +74,17 @@ const ProductCard = ({ id, title, image, price, rate, count }) => {
           {productInCart ? (
             <div className="flex items-center justify-between rounded-full gap-[1rem] w-[140px] border-2 border-yellow-300" >
               <button
-                onClick={() => decreaseProductQuantity(id)}
+                onClick={() =>
+                  addProductToCart({ id, title, image, price, rate, count })
+                }
                 style={{ padding: '.5px 7px', borderRadius: '10px 0 0 10px' }}
               >
                 <Plus className="w-4 h-4 cursor-pointer" />
               </button>
               <p className="text-lg">{productInCart.quantity}</p>
               <button
-                onClick={() =>
-                  addProductToCart({ id, title, image, price, rate, count })
-                }
-                style={{ padding: '.5px 7px', borderRadius: '0 10px 10px 0' }}
+                onClick={() => decreaseProductQuantity(id)}
+                style={{ padding: '.5px 7px', borderRadius: '10px 0 0 10px' }}
               >
                 {productInCart.quantity == 1 ?
                   <Trash className="w-4 h-4 cursor-pointer" />

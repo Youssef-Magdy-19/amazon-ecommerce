@@ -99,9 +99,6 @@ button{
     width: 100% !important;
   }
 } */
-body{
-  height: 5000px;
-}
 button{
   transition: .3s ease-in-out;
 }

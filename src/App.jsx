@@ -9,6 +9,7 @@ import Cart from './Pages/Cart'
 import WishList from './Pages/WishList'
 import Footer from './Components/Footer'
 import Checkout from './Pages/CheckOut'
+import OrderSuccess from './Pages/OrderSucces'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path='/cart' element={<Cart />} />
           <Route path='/wishlist' element={<WishList />} />
           <Route path='/checkout' element={<Checkout />} />
+          <Route path='/order-success' element={<OrderSuccess />} />
           <Route path='/*' element={<PageNotFound />} />
         </Routes>
       </div>

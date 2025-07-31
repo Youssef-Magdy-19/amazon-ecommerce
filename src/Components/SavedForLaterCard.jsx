@@ -13,7 +13,7 @@ const SavedForLaterCard = ({ product, onMoveToCart, onRemove }) => (
       {/* تفاصيل وزرار */}
       <div className="flex-1 w-full flex flex-col gap-3">
         <div className="flex-1 min-w-0">
-          <h3 className="font-semibold text-base sm:text-lg mb-1">{product.title.slice(0,20)} ...</h3>
+          <h3 className="font-semibold text-base sm:text-lg mb-1">{product.title.slice(0,19)} ...</h3>
           <p className="font-bold text-lg tracking-wide mb-1">{product.price} EGP</p>
           <p className="text-green-600 text-[14px]">{product.count > 100 ? 'Available' : (<span className="text-red-600"> Only  {product.quantity}  left</span>)}</p>
           <p className="text-blue-500 text-[14px]">15 days of replacement</p>

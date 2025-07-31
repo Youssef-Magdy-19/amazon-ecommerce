@@ -7,6 +7,7 @@ import { useCart } from "../context/CartContext";
 import ProductInfo from "../Components/ProductInfo";
 import Reviews from "../Components/Reviews";
 import AddReviewForm from "../Components/AddReviewForm";
+import LoadingSpinner from "./Test/LoadingSpinner";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -24,8 +25,8 @@ const ProductDetails = () => {
     text: "",
   });
 
-    //  عشان يرجع لاول الصفحة لما تروحلها 
-    useEffect(() => {
+  //  عشان يرجع لاول الصفحة لما تروحلها 
+  useEffect(() => {
     if (id) {
       window.scrollTo(0, 0)
     }
@@ -50,7 +51,7 @@ const ProductDetails = () => {
 
   const handleBuyNow = () => {
     addToCart(product, quantity);
-    navigate("/payment");
+    navigate("/checkout");
   };
 
   const handleAddReview = (e) => {
@@ -65,7 +66,7 @@ const ProductDetails = () => {
     }
   };
 
-  if (loading) return <p className="text-center py-8">Loading...</p>;
+  if (loading) return <LoadingSpinner />
   if (!product) return <p>Product not found</p>;
 
   return (
@@ -81,9 +82,9 @@ const ProductDetails = () => {
       <section className="my-4 border-t flex justify-center flex-col items-center lg:flex-row lg:items-baseline gap-4 w-[70%] mx-auto">
         <Reviews product={product} reviews={reviews} />
         <AddReviewForm
-        newReview={newReview}
-        setNewReview={setNewReview}
-        handleAddReview={handleAddReview}
+          newReview={newReview}
+          setNewReview={setNewReview}
+          handleAddReview={handleAddReview}
         />
       </section>
     </div>

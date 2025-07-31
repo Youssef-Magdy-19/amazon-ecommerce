@@ -24,7 +24,7 @@ const SavedForLater = () => {
     }
 
     return (
-        <div className="saved-for-later bg-white py-3 mt-4">
+        <div className="saved-for-later bg-white py-3 px-3 mt-4">
             <h2 className="text-xl font-bold mb-1 pb-2">
                 Saved for Later ({savedForLater.length} items)
             </h2>

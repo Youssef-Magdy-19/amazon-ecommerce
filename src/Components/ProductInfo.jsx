@@ -1,4 +1,5 @@
 import { Star, StarHalf, Star as StarFilled } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const renderStars = (rating) => {
   const stars = [];
@@ -19,6 +20,7 @@ const renderStars = (rating) => {
 };
 
 const ProductInfo = ({ product, quantity, setQuantity, handleAddToCart, handleBuyNow }) => {
+  const navigate = useNavigate()
   return (
     <section className="grid grid-cols-1 lg:grid-cols-3 gap-24 w-[90%] mx-auto" style={{ margin: "50px auto" }}>
       <div className="flex justify-center items-start">
@@ -74,8 +76,18 @@ const ProductInfo = ({ product, quantity, setQuantity, handleAddToCart, handleBu
         </div>
 
         <div className="flex flex-col gap-4">
-          <button onClick={handleAddToCart} className="bg-[#FFCC00] w-full py-2 px-6 h-8 rounded-2xl cursor-pointer font-semibold text-sm md:text-md text-black hover:brightness-95 transition">Add to Cart</button>
-          <button onClick={handleBuyNow} className="bg-orange-400 py-2 px-6 h-8 rounded-2xl font-semibold cursor-pointer text-sm md:text-md text-black hover:bg-orange-500 transition">Buy Now</button>
+          <button
+            onClick={handleAddToCart}
+            className="bg-[#FFCC00] w-full py-2 px-6 h-8 rounded-2xl cursor-pointer font-semibold text-sm md:text-md text-black hover:brightness-95 transition"
+          >
+            Add to Cart
+          </button>
+          <button
+            onClick={() => handleBuyNow()}
+            className="bg-orange-400 py-2 px-6 h-8 rounded-2xl font-semibold cursor-pointer text-sm md:text-md text-black hover:bg-orange-500 transition"
+          >
+            Buy Now
+          </button>
         </div>
       </div>
     </section>
