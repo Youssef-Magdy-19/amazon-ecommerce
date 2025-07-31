@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import { useCart } from "../context/CartContext";
+import { GlobalContext } from "../context/GlobalContext";
 
 import ProductInfo from "../Components/ProductInfo";
 import Reviews from "../Components/Reviews";
@@ -11,7 +11,7 @@ import LoadingSpinner from "./Test/LoadingSpinner";
 const ProductDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { addToCart } = useCart();
+  const { addProductToCart } = useContext(GlobalContext);
 
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
@@ -24,12 +24,11 @@ const ProductDetails = () => {
     text: "",
   });
 
-  //  عشان يرجع لاول الصفحة لما تروحلها 
   useEffect(() => {
     if (id) {
-      window.scrollTo(0, 0)
+      window.scrollTo(0, 0);
     }
-  }, [id])
+  }, [id]);
 
   useEffect(() => {
     axios
@@ -45,11 +44,15 @@ const ProductDetails = () => {
   }, [id]);
 
   const handleAddToCart = () => {
-    addToCart(product, quantity);
+    if (product) {
+      for (let i = 0; i < quantity; i++) {
+        addProductToCart(product);
+      }
+    }
   };
 
   const handleBuyNow = () => {
-    addToCart(product, quantity);
+    handleAddToCart();
     navigate("/checkout");
   };
 
@@ -65,7 +68,7 @@ const ProductDetails = () => {
     }
   };
 
-  if (loading) return <LoadingSpinner />
+  if (loading) return <LoadingSpinner />;
   if (!product) return <p>Product not found</p>;
 
   return (
