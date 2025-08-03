@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -52,7 +53,7 @@ const Footer = () => {
         </div>
 
         <div className="flex items-center justify-center gap-4 py-3  md:py-10 border-t border-gray-600 md:h-16 ">
-          <img src="/public/images/AmazonNavbar.png" alt="Amazon" className="w-24 " />
+          <Link to='/'><img src="/images/AmazonNavbar.png" alt="Amazon" className="w-24 " /></Link>
           <div className="flex items-center gap-4 text-gray-300">
             <select className="bg-[#232f3e] border border-gray-600 px-2 py-1 rounded">
               <option>English</option>
