@@ -13,6 +13,9 @@
 html{
   scroll-behavior: smooth;
 }
+body , section{
+  overflow-x: hidden !important;
+}
 section{
   margin-left: auto;
   margin-right: auto;
@@ -82,6 +85,14 @@ button{
     padding: 15px 10px !important;
   }
 }
+@media(max-width:429px){
+  .buttons-wishlist{
+    flex-direction: column !important;
+  }
+  .buttons-wishlist button{
+    width: 100% !important;
+  }
+}
 @media(max-width:410px){
   .info{
     flex: 1 1 0% !important;
@@ -96,7 +107,7 @@ button{
 }
 /* @media(max-width:390px){
   header{
-    width: 100% !important;
+    width: 360px !important;
   }
 } */
 button{

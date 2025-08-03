@@ -9,29 +9,31 @@ import emptyStar from '../assets/emptyStar.svg';
 import { Ellipsis, Plus, Share, UserRound } from "lucide-react";
 import LoadingSpinner from "./Test/LoadingSpinner";
 
-const WishList =()=>{
+const WishList = () => {
   const [loading, setLoading] = useState(true);
-	const { wishlist, addProductToCart, removeProductFromWishlist} = useContext(GlobalContext);
-	const navigate = useNavigate();
+  const { wishlist, addProductToCart, removeProductFromWishlist } = useContext(GlobalContext);
+  const navigate = useNavigate();
 
-  useEffect(()=>{ if(wishlist) setLoading(false)})
+  useWindowScrollToTop()
 
-	const renderStars = (rate) => {
-			const stars = [];
-			for (let i = 1; i <= 5; i++) {
-				if (rate >= i) {
-					stars.push(<img src={filledStar} key={i} loading="lazy" alt="star icon" />);
-				} else {
-					stars.push(<img src={emptyStar} key={i} loading="lazy" alt="star icon" />);
-				}
-			}
-			return stars;
-		};
+  useEffect(() => { if (wishlist) setLoading(false) })
 
-    if (loading) return <LoadingSpinner />
-	
-	return (
-    <section className="relative top-[124px] md:top-[60px] py-20 w-[90%] md:w-[85%]">
+  const renderStars = (rate) => {
+    const stars = [];
+    for (let i = 1; i <= 5; i++) {
+      if (rate >= i) {
+        stars.push(<img src={filledStar} key={i} loading="lazy" alt="star icon" />);
+      } else {
+        stars.push(<img src={emptyStar} key={i} loading="lazy" alt="star icon" />);
+      }
+    }
+    return stars;
+  };
+
+  if (loading) return <LoadingSpinner />
+
+  return (
+    <section className="relative py-20 w-[90%] md:w-[85%]">
       <h2 className="text-2xl font-semibold text-[#2162a1] mb-3">
         Your Wishlist
       </h2>
@@ -80,16 +82,16 @@ const WishList =()=>{
             {wishlist.map((item) => (
               <div
                 key={item.id}
-                className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-2 rounded-lg border-[#D9D9D9]"
+                className="flex flex-col md:flex-row md:justify-between md:items-center border-2 rounded-lg border-[#D9D9D9]"
               >
                 <Link
-                  to={`/productDetails/${item.id}`}
-                  className="block w-full sm:w-[300px] p-4"
+                  to={`/products/${item.id}`}
+                  className="block w-full md:w-[300px] p-4"
                 >
                   <img
                     src={item.image}
                     loading="lazy"
-                    className="w-[200px] object-contain"
+                    className="w-[200px] object-contain m-auto"
                     alt={item.title}
                   />
                 </Link>
@@ -130,16 +132,16 @@ const WishList =()=>{
                         </span>
                       </p>
                     </div>
-                    <div className="buttons flex gap-1 sm:gap-2">
+                    <div className="buttons-wishlist flex gap-1 sm:gap-2">
                       <button
                         onClick={() => addProductToCart(item)}
-                        className="w-fit py-1 px-4 bg-[#FFCC00] font-light rounded-4xl cursor-pointer"
+                        className="w-fit flex-1 py-1 px-4 bg-[#FFCC00] font-light rounded-4xl cursor-pointer"
                       >
                         Add to cart
                       </button>
                       <button
                         onClick={() => removeProductFromWishlist(item.id)}
-                        className="w-fit py-1 px-4 bg-white border-2 border-[#D9D9D9] font-light rounded-4xl cursor-pointer"
+                        className="w-fit flex-1 py-1 px-4 bg-white border-2 border-[#D9D9D9] font-light rounded-4xl cursor-pointer"
                       >
                         Remove from list
                       </button>

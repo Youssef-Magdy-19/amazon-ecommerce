@@ -1,6 +1,4 @@
 // @ts-ignore
-import img33 from '../../assets/images/img33.png'
-// @ts-ignore
 import img34 from '../../assets/images/img34.png'
 // @ts-ignore
 import img35 from '../../assets/images/img35.png'
@@ -9,18 +7,10 @@ import img36 from '../../assets/images/img36.png'
 // @ts-ignore
 import img37 from '../../assets/images/img37.png'
 // @ts-ignore
-import img38 from '../../assets/images/img38.png'
-// @ts-ignore
-import img39 from '../../assets/images/img39.png'
-// @ts-ignore
 import img40 from '../../assets/images/img40.png'
 
 
 const testimonials = [
-  {
-    id: 1,
-    image: img33,
-  },
   {
     id: 2,
     image: img34,
@@ -37,16 +27,6 @@ const testimonials = [
   {
     id: 5,
     image: img37,
-  },
-
-  {
-    id: 6,
-    image: img38,
-  },
-
-  {
-    id: 7,
-    image: img39,
   },
   {
     id: 8,
@@ -104,20 +84,8 @@ export default function Slider2() {
               testimonials.map((testimonial, index) => (
 
                 <SwiperSlide key={index} className='p-0 m-0 flex justify-center'>
-                  <div className='text-center bg-white rounded-lg shadow-md h-full w-fit rr'>
-                    {/* <div className='w-24 h-24 mx-auto mb-4'>
-                     <img src={testimonial.image} alt="" className=' h-[255px] object-cover rounded-full' />
-                </div> */}
+                  <div className='text-center m-auto bg-white rounded-lg shadow-md h-full w-fit rr'>
                     <img src={testimonial.image} alt="" className='w-full h-full  object-cover' />
-
-                    {/* <div className='flex justify-center mb-2'>
-                     {[...Array(5)].map((_,starIndex)=>(
-                         <span key={starIndex} className='text-yellow-400'>★</span>
-                     ))}
-                </div> */}
-
-                    {/* <h3 className='text-xl font-semibold mb-3'>{testimonial.name}</h3> */}
-                    {/* <p className='text-gray-600 line-clamp-5'>{testimonial.text}</p> */}
                   </div>
                 </SwiperSlide>
               ))

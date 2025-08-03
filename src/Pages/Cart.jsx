@@ -11,9 +11,9 @@ import LoadingSpinner from "./Test/LoadingSpinner"
 
 const Cart = () => {
     const navigate = useNavigate()
-    const { removeAllProductFromCart, cart } = useContext(GlobalContext);
+    const { removeAllProductFromCart, cart , savedForLater } = useContext(GlobalContext);
     const { user } = useUser()
-    const savedForLater = JSON.parse(localStorage.getItem('savedForLater')) || []
+    // const savedForLater = JSON.parse(localStorage.getItem('savedForLater')) || []
 
     // حساب السعر الكلي لمنتجات عربة التسوق
     let totalPrice = 0
@@ -30,6 +30,10 @@ const Cart = () => {
     })
     
     useWindowScrollToTop()
+
+    useEffect(()=>{
+        localStorage.setItem('savedForLater' , JSON.stringify(savedForLater))
+    } , [savedForLater])
 
     return (
         <section className="cartPage bg-white md:bg-gray-200" style={{ padding: '10px 15px' }}>
@@ -87,7 +91,7 @@ const Cart = () => {
                 <div className="py-2 bg-white mt-2">
                     <button
                         className="flex justify-between items-center w-full p-3 border-b border-t border-gray-300 font-semibold cursor-pointer"
-                        onClick={() => { user && navigate('/products') }}
+                        onClick={() => { navigate('/products') }}
                     >
                         Follow up Shopping
                         <ChevronRight size={20} />

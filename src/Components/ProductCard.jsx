@@ -3,20 +3,26 @@ import { Link } from "react-router-dom";
 import filledStar from "../assets/filledStar.svg";
 // @ts-ignore
 import emptyStar from '../assets/emptyStar.svg';
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../context/GlobalContext";
-import { Minus, Plus, Trash } from "lucide-react";
+import { Minus, Plus, Trash, Heart } from "lucide-react";
 
-const ProductCard = ({ id, title, image, price, rate, count }) => {
-  const { cart, addProductToCart, decreaseProductQuantity } = useContext(GlobalContext);
-  const productInCart = cart.find((item) => item.id === id);
+const ProductCard = ({ product }) => {
+  const { cart, addProductToCart, decreaseProductQuantity, removeProductFromWishlist, addProductToWishlist, isInWishlist } = useContext(GlobalContext);
+  const productInCart = cart.find((item) => item.id === product.id);
+
+  const [liked, setLiked] = useState(isInWishlist(product.id));
+
+  useEffect(() => {
+    setLiked(isInWishlist(product.id));
+  }, [isInWishlist, product.id]);
 
   const renderStars = () => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
       stars.push(
         <img
-          src={rate >= i ? filledStar : emptyStar}
+          src={product.rate >= i ? filledStar : emptyStar}
           key={i}
           loading="lazy"
           alt="star icon"
@@ -28,22 +34,22 @@ const ProductCard = ({ id, title, image, price, rate, count }) => {
 
   return (
     <div className="p-3 border-2 border-[#D9D9D9]">
-      <Link to={`/products/${id}`} className="block my-3">
+      <Link to={`/products/${product.id}`} className="block my-3">
         <img
-          src={image}
+          src={product.image}
           loading="lazy"
           className="w-[250px] h-[250px] object-contain mx-auto"
-          alt="product image"
+          alt="product product.image"
         />
       </Link>
       <div className="flex flex-col justify-between gap-3 mb-3">
-        <h3 className="w-full font-medium text-lg">{title}</h3>
+        <h3 className="w-full font-medium text-lg">{product.title.slice(0, 16)} ...</h3>
         <div className="flex flex-col">
           <div className="rating flex gap-2 items-center w-2/3">
             <div className="stars flex items-center justify-between gap-0.5">
               {renderStars()}
             </div>
-            <p className="count font-normal text-[#1F8394]">{count}</p>
+            <p className="product.count font-normal text-[#1F8394]">{product.count}</p>
           </div>
           <p className="bought font-normal text-[#717171]">
             1k+ bought in past month
@@ -52,7 +58,7 @@ const ProductCard = ({ id, title, image, price, rate, count }) => {
         <div className="flex flex-col">
           <div className="w-2/3">
             <p className="font-normal text-xl">
-              ${price.toFixed(2)}{" "}
+              ${product.price.toFixed(2)}{" "}
               <span className="font-normal text-xs text-[#7F7F7F]">
                 (21% off)
               </span>
@@ -71,38 +77,53 @@ const ProductCard = ({ id, title, image, price, rate, count }) => {
               </span>
             </p>
           </div>
-          {productInCart ? (
-            <div className="flex items-center justify-between rounded-full gap-[1rem] w-[140px] border-2 border-yellow-300" >
+          <div className="flex justify-between items-center gap-[2rem]">
+            {productInCart ? (
+              <div className="flex items-center justify-between rounded-full gap-[1rem] w-[140px] border-2 border-yellow-300" >
+                <button
+                  onClick={() =>
+                    addProductToCart(product)
+                  }
+                  style={{ padding: '.5px 7px', borderRadius: '10px 0 0 10px' }}
+                >
+                  <Plus className="w-4 h-4 cursor-pointer" />
+                </button>
+                <p className="text-lg">{productInCart.quantity}</p>
+                <button
+                  onClick={() => decreaseProductQuantity(product.id)}
+                  style={{ padding: '.5px 7px', borderRadius: '10px 0 0 10px' }}
+                >
+                  {productInCart.quantity == 1 ?
+                    <Trash className="w-4 h-4 cursor-pointer" />
+                    :
+                    <Minus className="w-4 h-4 cursor-pointer" />
+                  }
+                </button>
+              </div>
+            ) : (
               <button
                 onClick={() =>
-                  addProductToCart({ id, title, image, price, rate, count })
+                  addProductToCart(product)
                 }
-                style={{ padding: '.5px 7px', borderRadius: '10px 0 0 10px' }}
+                className="w-fit py-1 px-4 bg-[#FFCC00] font-light rounded-4xl cursor-pointer"
               >
-                <Plus className="w-4 h-4 cursor-pointer" />
+                Add to cart
               </button>
-              <p className="text-lg">{productInCart.quantity}</p>
-              <button
-                onClick={() => decreaseProductQuantity(id)}
-                style={{ padding: '.5px 7px', borderRadius: '10px 0 0 10px' }}
-              >
-                {productInCart.quantity == 1 ?
-                  <Trash className="w-4 h-4 cursor-pointer" />
-                  :
-                  <Minus className="w-4 h-4 cursor-pointer" />
-                }
-              </button>
-            </div>
-          ) : (
-            <button
-              onClick={() =>
-                addProductToCart({ id, title, image, price, rate, count })
-              }
-              className="w-fit py-1 px-4 bg-[#FFCC00] font-light rounded-4xl cursor-pointer"
-            >
-              Add to cart
+            )}
+            <button>
+              <Heart
+                size={20}
+                color={liked ? 'red' : 'gray'}
+                fill={liked ? 'red' : 'none'}
+                style={{ cursor: 'pointer' }}
+                onClick={() => {
+                  setLiked(!liked)
+                  liked ? removeProductFromWishlist(product.id) : addProductToWishlist(product)
+                }}
+              />
             </button>
-          )}
+
+          </div>
         </div>
       </div>
     </div>

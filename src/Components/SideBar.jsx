@@ -1,5 +1,5 @@
 import React from "react";
-import { X, User } from "lucide-react";
+import { X, User, Heart } from "lucide-react";
 import { UserButton } from "@clerk/clerk-react";
 import { useNavigate } from "react-router-dom";
 
@@ -28,19 +28,34 @@ const AmazonSidebar = ({ isOpen, setIsOpen, user, signIn }) => {
                 </button>
 
                 {/* Header */}
-                <div className="bg-[#232f3e] text-white" style={{ padding: '15px' }} onClick={() => signIn()}>
+                <div className="bg-[#232f3e] text-white" style={{ padding: '15px' }}>
                     {user ?
                         <div className="flex gap-[.5rem] items-center">
                             <span>Hello! {user.fullName}</span>
                             <UserButton />
                         </div>
                         :
-                        <div className="flex gap-2 items-center" onClick={() => setIsOpen(false)}>
+                        <div
+                            className="flex gap-2 items-center"
+                            onClick={() => {
+                                setIsOpen(false)
+                                signIn()
+                            }}
+                        >
                             <User width={22} />
                             <span> Sign in </span>
                         </div>
                     }
-                    <h2 className="text-xl font-bold" style={{ marginTop: "7.5px" }}>Browse Amazon</h2>
+                    <h2
+                        className="text-xl font-bold"
+                        style={{ marginTop: "7.5px" }}
+                        onClick={() => {
+                            navigate('/')
+                            setIsOpen(false)
+                        }}
+                    >
+                        Browse Amazon
+                    </h2>
                 </div>
 
                 {/* Main Content */}
@@ -50,7 +65,7 @@ const AmazonSidebar = ({ isOpen, setIsOpen, user, signIn }) => {
                         <h3 className="font-bold text-gray-700 text-lg" style={{ marginBottom: '7.5px' }}>
                             Best Departments
                         </h3>
-                        <ul className="space-y-3 text-gray-800 text-base">
+                        <ul className="space-y-3 text-gray-800 text-base ml-3">
                             <li
                                 className="hover:bg-gray-100 rounded cursor-pointer"
                                 style={{ marginBottom: "7.5px" }}
@@ -82,6 +97,13 @@ const AmazonSidebar = ({ isOpen, setIsOpen, user, signIn }) => {
                                 Women Fashion
                             </li>
                         </ul>
+                        <button
+                            onClick={() => navigate('/wishlist')}
+                            className="flex gap-[0.5rem] items-center font-bold text-gray-700 text-lg mt-5"
+                            style={{ marginBottom: '7.5px' }}
+                        >
+                            <Heart className="w-5 h-5" /> WishList
+                        </button>
                     </div>
                 </div>
             </div>

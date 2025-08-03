@@ -8,6 +8,7 @@ import { toast } from 'react-hot-toast';
 import { Helmet } from 'react-helmet';
 import { useCart } from '../context/CartContext';
 import { GlobalContext } from '../context/GlobalContext';
+import useWindowScrollToTop from '../hooks/useWindowScrollToTop';
 
 export default function Checkout() {
   const [loading, setLoading] = useState(false);
@@ -16,6 +17,8 @@ export default function Checkout() {
   const { cartId, setCartNumber } = useCart();
   const navigate = useNavigate();
   const {removeAllProductFromCart} = useContext(GlobalContext)
+
+  useWindowScrollToTop()
 
   const validationSchema = Yup.object({
     city: Yup.string().min(3).max(20).required('City is required'),

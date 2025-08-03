@@ -2,9 +2,10 @@
 import React, { use, useContext, useEffect, useRef, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { UserButton, useClerk, useUser } from "@clerk/clerk-react"
-import { Menu, User, X } from "lucide-react"
+import { Menu, User, X, Heart } from "lucide-react"
 import AmazonSidebar from "./SideBar"
 import { GlobalContext } from "../context/GlobalContext"
+import Search from "./Search"
 
 const Navbar = () => {
     const navigate = useNavigate()
@@ -12,7 +13,7 @@ const Navbar = () => {
     const { user } = useUser()
     const [isOpen, setIsOpen] = useState(false)
     const [scroll, setScroll] = useState(false)
-    const { cart } = useContext(GlobalContext)
+    const { cart , wishlist} = useContext(GlobalContext)
 
     // حساب عدد السلع 
     let numberOfGoods = 0
@@ -64,22 +65,7 @@ const Navbar = () => {
                     <button className="cursor-pointer block md:hidden" onClick={() => setIsOpen(true)}>
                         <Menu color="white" size={30} />
                     </button>
-                    {/* Search */}
-                    <div className="search flex bg-white text-gray-500 rounded min-w-[230px]">
-                        <input
-                            type="text"
-                            placeholder="Search Amazon.eg"
-                            className="border-0 outline-0 w-[70%]"
-                            style={{ padding: '8px 12px' }}
-                        />
-                        <button
-                            className="bg-yellow-500 cursor-pointer"
-                            style={{ padding: '0 10px', borderRadius: '0 4px 4px 0', marginLeft: 'auto' }}
-                            onClick={() => navigate('/products')}
-                        >
-                            <img src="/images/search.png" />
-                        </button>
-                    </div>
+                    <Search width={230} response={''} />
                     {/* Link to cart */}
                     <button
                         className="cart relative flex items-center gap-[0.5rem]"
@@ -107,29 +93,10 @@ const Navbar = () => {
                         <img src="/images/location.png" alt="" />
                         <p className="text-gray-400 text-[14px]">Deliver To <span className="text-white font-bold"> Egypt </span></p>
                     </div>
+
                     {/* Search */}
-                    <div className="search flex bg-white text-gray-500 hidden md:flex rounded min-w-[330px]">
-                        <select className="bg-gray-100 cursor-pointer w-[60px]" style={{ padding: '0 10px', borderRadius: "4px 0 0 4px" }}>
-                            <option hidden>All</option>
-                            <option>All Categories</option>
-                            <option>Mens Fashion</option>
-                            <option>Women Fashion</option>
-                            <option>Electronics</option>
-                        </select>
-                        <input
-                            type="text"
-                            placeholder="Search Amazon.eg"
-                            className="border-0 outline-0"
-                            style={{ padding: '8px 12px' }}
-                        />
-                        <button
-                            className="bg-yellow-500 cursor-pointer"
-                            style={{ padding: '0 10px', borderRadius: '0 4px 4px 0' }}
-                            onClick={() => navigate('/products')}
-                        >
-                            <img src="/images/search.png" />
-                        </button>
-                    </div>
+                    <Search width={330} response={'hidden md:flex'} />
+
                     {/* language */}
                     <div className="gap-[0.5rem] items-center hidden md:flex">
                         <img src="https://flagcdn.com/eg.svg" width={28} height={24} />
@@ -147,7 +114,7 @@ const Navbar = () => {
                             style={{ marginLeft: '16px' }}
                             onClick={() => openSignIn()}
                         >
-                            <p className="text-gray-300 text-[14px]">
+                            <p className="text-gray-300 text-[14px] ml-[-30px] md:ml-0">
                                 <span> Sign in </span>
                                 <p className="text-white font-semibold w-[100px] hidden lg:block" style={{ marginLeft: '5px' }}>
                                     Account & Lists
@@ -158,7 +125,14 @@ const Navbar = () => {
                     }
 
                     {/* orders */}
-                    <a href="#" className="text-center text-white hidden lg:block">Returens & Orders</a>
+                    <Link to="/products" className="text-center text-white hidden lg:block">Returens & Orders</Link>
+                    
+                    {/* wishlist */}
+                    <button onClick={()=> navigate('/wishlist')} className="relative cursor-pointer">
+                        <span className="absolute bottom-[-48%] right-[-20%] text-orange-400 font-bold text-[18px]">{wishlist.length}</span>
+                        <Heart className="w-7 h-7" />
+                    </button>
+                    
                     {/* Link to cart */}
                     <div
                         className="cart relative flex items-center gap-[0.5rem]"
@@ -169,22 +143,10 @@ const Navbar = () => {
                         <p className="font-semibold hidden xl:block">cart</p>
                     </div>
                 </div>
+
                 {/* search in mobile */}
-                <div className="search flex bg-white text-gray-500 block md:hidden rounded min-w-[300px]">
-                    <input
-                        type="text"
-                        placeholder="Search Amazon.eg"
-                        className="border-0 outline-0"
-                        style={{ padding: '8px 12px' }}
-                    />
-                    <button
-                        className="bg-yellow-500 cursor-pointer"
-                        style={{ padding: '0 10px', borderRadius: '0 4px 4px 0', marginLeft: 'auto' }}
-                        onClick={() => navigate('/products')}
-                    >
-                        <img src="/images/search.png" />
-                    </button>
-                </div>
+                <Search width={300} response={'flex md:hidden'} />
+
                 {/* Delive location */}
                 <div className="Deliver flex gap-1 items-center block md:hidden">
                     <img src="/images/location.png" alt="" />

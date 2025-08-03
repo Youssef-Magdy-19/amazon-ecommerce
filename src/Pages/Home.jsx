@@ -75,10 +75,12 @@ import img32 from '../assets/images/img32.png'
 
 import { Link } from "react-router-dom";
 import Slider2 from "./ManiSlider/Slider2";
+import useWindowScrollToTop from "../hooks/useWindowScrollToTop";
 
 
 
 function Home() {
+  useWindowScrollToTop()
   return (
     <>
       <ManiSlider />

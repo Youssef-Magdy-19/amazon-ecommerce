@@ -143,12 +143,16 @@ export const GlobalProvider = ({ children }) => {
     removeProductFromCart(product.id)
   };
 
+
   // Remove from daved for later
   const removeFromSavedForLater = (id) => {
     setSavedForLater((prev) => prev.filter((i) => i.id !== id));
   };
 
   const isInSavedForLater = (id) => savedForLater.some((i) => i.id === id);
+
+  // search
+  const [searchResults, setSearchResults] = useState(null);
 
   return (
     <GlobalContext.Provider
@@ -166,6 +170,8 @@ export const GlobalProvider = ({ children }) => {
         addToSavedForLater,
         removeFromSavedForLater,
         isInSavedForLater,
+        searchResults,
+        setSearchResults
       }}
     >
       {children}

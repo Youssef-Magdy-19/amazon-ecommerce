@@ -10,10 +10,12 @@ import WishList from './Pages/WishList'
 import Footer from './Components/Footer'
 import Checkout from './Pages/CheckOut'
 import OrderSuccess from './Pages/OrderSucces'
+import { Toaster } from 'react-hot-toast'
 
 function App() {
   return (
     <>
+      <Toaster />
       <Navbar />
       <div className='pt-[130px] md:pt-[60px]'>
         <Routes>
